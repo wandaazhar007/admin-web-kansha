@@ -1,0 +1,37 @@
+@import './responsive.scss';
+@import './variable.scss';
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  columns: inherit;
+}
+
+.main {
+  font-family: "Inter", sans-serif;
+  background-color: $colorBackgroundLight;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebarContainer {
+  width: 32rem;
+  background-color: aqua;
+  border-right: .2px solid $soft-bg;
+}
+
+.contentContainer {
+  padding: 2rem 2rem;
+  width: 100%;
+}

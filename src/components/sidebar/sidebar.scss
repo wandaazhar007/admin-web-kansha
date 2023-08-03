@@ -1,0 +1,52 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.sidebar {
+  background-color: $colorBackgroundDark;
+  color: $colorBackgroundLight;
+  padding: 1.5rem;
+  transition: all .9s linear;
+  z-index: 99;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    margin-bottom: 2rem;
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 200;
+      color: $colorBackgroundLight;
+    }
+
+    .listItem {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem;
+      border-radius: .5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+
+      &:hover {
+        background-color: $soft-bg;
+      }
+
+      .listItemTitle {
+        color: $colorBackgroundLight;
+      }
+    }
+
+    .active {
+      background-color: $colorTeal;
+    }
+
+  }
+}
+
+.active {
+  left: 0;
+  transition: all .9s linear;
+  display: block;
+}

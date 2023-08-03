@@ -1,0 +1,17 @@
+@import '../../style/variable.scss';
+@import '../../style/responsive.scss';
+
+.footer {
+  background-color: $colorBackgroundNavbar;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  width: 100%;
+  padding: 0 5rem;
+
+  span {
+    font-size: 1.4rem;
+    color: $colorBackgroundLight;
+  }
+}

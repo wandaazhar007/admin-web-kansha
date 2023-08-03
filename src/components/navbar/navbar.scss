@@ -1,0 +1,68 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.navbar {
+  width: 100%;
+  padding: .5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: $colorBackgroundNavbar;
+  color: $colorBackgroundLight;
+
+  .logo {
+    width: 15rem;
+    height: 5rem;
+    // border: .1rem solid salmon;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .icon {
+      cursor: pointer;
+      color: gray;
+    }
+
+    .notification {
+      position: relative;
+      cursor: pointer;
+
+      span {
+        background-color: red;
+        color: $colorBackgroundLight;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        right: -12px;
+        top: -8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+
+      img {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+}

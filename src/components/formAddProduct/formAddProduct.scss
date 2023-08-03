@@ -1,0 +1,25 @@
+.formAddProduct {
+  border: .2rem solid salmon;
+
+  .container {
+    form {
+      display: flex;
+      // flex-direction: column;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border: .1rem solid salmon;
+      width: 100%;
+
+      .col {
+        border: .1rem solid green;
+
+        .inputGroup {
+          display: flex;
+          flex-direction: column;
+          gap: .5rem;
+        }
+      }
+
+    }
+  }
+}

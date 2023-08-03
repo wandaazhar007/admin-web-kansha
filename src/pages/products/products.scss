@@ -1,0 +1,25 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.products {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: grey;
+    }
+
+    button {
+      padding: .7rem 1.5rem;
+      border-radius: .5rem;
+      border: none;
+      background-color: $colorBackgroundDark;
+      color: $colorBackgroundLight;
+    }
+  }
+
+  .content {}
+}
