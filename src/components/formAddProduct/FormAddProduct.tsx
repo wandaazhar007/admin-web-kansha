@@ -3,7 +3,7 @@ import './formAddProduct.scss';
 const FormAddProduct = () => {
   return (
     <section className="formAddProduct">
-      <div className="container">
+      <div className="formContainer">
         <form>
 
           <div className="col">
