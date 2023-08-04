@@ -9,3 +9,89 @@
     color: grey;
   }
 }
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  .box-container {
+    display: flex;
+    gap: 1.5rem;
+
+    // @include tablet {
+    //   gap: 1rem;
+    // }
+
+    .link {
+      height: 3.5rem;
+      width: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: .6rem;
+      border: .1rem solid var(--colorBlue);
+      color: var(--colorBlue);
+
+      // @include tablet {
+      //   height: 2.5rem;
+      //   width: 2.5rem;
+      //   font-size: 1.4rem;
+      // }
+    }
+
+    .active {
+      background-color: var(--colorBlue);
+      color: var(--colorWhite);
+    }
+
+    .disabled {
+      background-color: var(--colorGrey);
+      color: var(--colorBlue);
+      cursor: not-allowed;
+      opacity: .3;
+    }
+  }
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton.box-images-skeleton {
+  opacity: .5;
+  width: 12.5rem;
+  height: 10rem;
+  border-radius: 1rem;
+}
+
+.skeleton.skeleton-text-title {
+  width: 70%;
+  height: 1.64rem;
+  border-radius: 1rem;
+}
+
+.skeleton.skeleton-text-price {
+  margin-top: 1rem;
+  width: 40%;
+  height: 1rem;
+  border-radius: 1rem;
+}
+
+.skeleton.skeleton-text-desc {
+  margin-top: 1rem;
+  width: 90%;
+  height: 1rem;
+  border-radius: 1rem;
+}
