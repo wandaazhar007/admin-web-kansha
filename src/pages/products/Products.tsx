@@ -1,4 +1,5 @@
 import FormAddProduct from '../../components/formAddProduct/FormAddProduct';
+import ProductList from '../../components/productList/ProductList';
 import './products.scss';
 
 const Products = () => {
@@ -10,7 +11,7 @@ const Products = () => {
       </div>
       <FormAddProduct />
       <div className="content">
-
+        <ProductList />
       </div>
     </section>
   );

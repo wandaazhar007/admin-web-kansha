@@ -1,3 +1,4 @@
+import './index.css';
 import './style/globals.scss';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -12,7 +13,7 @@ function App() {
     return (
       <div className="main">
         <Navbar />
-        <div className="container">
+        <div className="allContainer">
           <div className="sidebarContainer">
             <Sidebar />
           </div>
