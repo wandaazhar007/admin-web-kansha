@@ -21,8 +21,9 @@ a {
   background-color: $colorBackgroundLight;
 }
 
-.container {
+.allContainer {
   display: flex;
+  border: .1rem solid green;
 }
 
 .sidebarContainer {
@@ -34,4 +35,5 @@ a {
 .contentContainer {
   padding: 2rem 2rem;
   width: 100%;
+  border: .1rem solid salmon;
 }
