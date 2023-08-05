@@ -9,7 +9,7 @@ const Products = () => {
         <h1>All Products</h1>
         <button>Add Product</button>
       </div>
-      <FormAddProduct />
+      {/* <FormAddProduct /> */}
       <div className="content">
         <ProductList />
       </div>
