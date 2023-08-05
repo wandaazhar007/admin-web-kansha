@@ -8,6 +8,15 @@
     font-size: 1.4rem;
     color: grey;
   }
+
+  .search {
+
+    input {
+      background-color: white;
+      height: 2.6rem;
+      color: none;
+    }
+  }
 }
 
 
@@ -69,29 +78,41 @@
   animation: skeleton-loading 1s linear infinite alternate;
 }
 
-.skeleton.box-images-skeleton {
-  opacity: .5;
-  width: 12.5rem;
-  height: 10rem;
-  border-radius: 1rem;
-}
+// .skeleton.box-images-skeleton {
+//   opacity: .5;
+//   width: 12.5rem;
+//   height: 10rem;
+//   border-radius: 1rem;
+// }
 
-.skeleton.skeleton-text-title {
-  width: 70%;
+.skeleton.skeletonName {
+  width: 10rem;
   height: 1.64rem;
-  border-radius: 1rem;
+  border-radius: .5rem;
 }
 
-.skeleton.skeleton-text-price {
-  margin-top: 1rem;
-  width: 40%;
-  height: 1rem;
-  border-radius: 1rem;
+.skeleton.skeletonSmallCategory {
+  width: 5rem;
+  height: .7rem;
+  border-radius: .5rem;
+  margin-top: .5rem;
 }
 
-.skeleton.skeleton-text-desc {
-  margin-top: 1rem;
-  width: 90%;
-  height: 1rem;
-  border-radius: 1rem;
+.skeleton.skeletonPrice {
+  width: 5rem;
+  height: 1.64rem;
+  border-radius: .5rem;
+}
+
+.skeleton.skeletonCategory {
+  width: 7rem;
+  height: 1.64rem;
+  border-radius: .5rem;
+}
+
+.skeleton.skeletonAction {
+  width: 5rem;
+  height: 2rem;
+  border-radius: .5rem;
+  border: none;
 }
