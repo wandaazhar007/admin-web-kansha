@@ -2,21 +2,22 @@ import { useEffect, useState } from 'react';
 import './productList.scss';
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ProductList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState(0);
-  const [keywordButton, setKeywordButton] = useState("");
-  const [keywordSearch, setKeywordSearch] = useState("");
+  const [querySearch, setQuerySearch] = useState("");
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
 
   const [menus, setMenus] = useState([]);
 
   const getMenu = async () => {
-    const response = await axios.get(`http://localhost:2000/products?search_query=${keywordSearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
       setMenus(response.data.result);
       setPage(response.data.page);
@@ -40,15 +41,22 @@ const ProductList = () => {
       setMsg("");
     }
   };
+  // type search = "string" | "number";
+  const handleSearch = (e: any) => {
+    setQuerySearch(e.target.value);
+    setIsLoading(true);
+  }
 
   useEffect(() => {
     getMenu();
-  }, [keywordSearch, page])
+  }, [querySearch, page]);
+
   return (
     <section className="productList">
       <div className="overflow-x-auto">
         <div className="search">
-          <input type="text" placeholder='search here..' />
+          <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
+          {querySearch}
         </div>
         <table className="table">
           <thead>
@@ -63,8 +71,8 @@ const ProductList = () => {
 
             {isLoading ? (
               <>
-                {menus.map((menu, index) => (
-                  <tr key={index}>
+                {menus.map((menu: any) => (
+                  <tr key={menu.id}>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -110,7 +118,10 @@ const ProductList = () => {
                     <td>${menu.price}</td>
                     <td>{menu.category.name}</td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">details</button>
+                      <div className="actions">
+                        <div className="detail"> <FontAwesomeIcon icon={faEdit} /></div>
+                        <div className="delete"><FontAwesomeIcon icon={faTrash} /></div>
+                      </div>
                     </th>
                   </tr>
                 ))}
@@ -118,8 +129,9 @@ const ProductList = () => {
             )}
 
           </tbody>
-          {msg && <p>{msg}</p>}
         </table>
+        <p className="messageTotalPage">Total: {rows} Products | page: {page} page of {pages}</p>
+        {msg && <p className="messageFooter">{msg}</p>}
 
         <div className="pagination">
           <div className="box-container">
