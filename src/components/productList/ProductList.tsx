@@ -6,7 +6,7 @@ import ReactPaginate from "react-paginate";
 const ProductList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState(0);
   const [keywordButton, setKeywordButton] = useState("");
   const [keywordSearch, setKeywordSearch] = useState("");
@@ -47,54 +47,53 @@ const ProductList = () => {
   return (
     <section className="productList">
       <div className="overflow-x-auto">
+        <div className="search">
+          <input type="text" placeholder='search here..' />
+        </div>
         <table className="table">
-          {isLoading ? (
-            <>
-              <thead>
-                <tr>
-                  <th>Name Products</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img src="./react.svg" alt="kanhsa" className='skeleton skeleton-img' />
+          <thead>
+            <tr>
+              <th>Name Products</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {isLoading ? (
+              <>
+                {menus.map((menu, index) => (
+                  <tr key={index}>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          <div className="skeleton mask mask-squircle w-12 h-12">
+                            {/* <img src="./react.svg" alt="kanhsa" /> */}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold skeleton skeletonName"></div>
+                          <div className="text-sm opacity-50 skeleton skeletonSmallCategory"></div>
                         </div>
                       </div>
-                      <div>
-                        <div className="font-bold skeleton skeleton-text-title">test</div>
-                        <div className="text-sm opacity-50"></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-              </tbody>
-            </>
-          ) : (
-            <>
-              <thead>
-                <tr>
-                  <th>Name Products</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
+                    </td>
+                    <td>
+                      <div className="skeleton skeletonPrice"></div>
+                    </td>
+                    <td>
+                      <div className="skeleton skeletonCategory"></div>
+                    </td>
+                    <th>
+                      <button className="btn btn-primary btn-xs skeleton skeletonAction"></button>
+                    </th>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <>
                 {menus.map((menu: any, index) => (
-                  <tr>
-
+                  <tr key={index}>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -115,9 +114,11 @@ const ProductList = () => {
                     </th>
                   </tr>
                 ))}
-              </tbody>
-            </>
-          )}
+              </>
+            )}
+
+          </tbody>
+          {msg && <p>{msg}</p>}
         </table>
 
         <div className="pagination">
