@@ -71,6 +71,14 @@
               outline: none;
             }
           }
+
+          .btnSave {
+            padding: 1rem 2rem;
+            background-color: $colorBackgroundDark;
+            color: $colorBackgroundLight;
+            border-radius: .5rem;
+            font-size: 1.4rem;
+          }
         }
       }
 
