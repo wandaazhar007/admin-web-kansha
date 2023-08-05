@@ -9,15 +9,27 @@
     align-items: center;
 
     h1 {
-      color: grey;
+      color: $dark-color;
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
-    button {
+    .btnAddProduct {
       padding: .7rem 1.5rem;
       border-radius: .5rem;
-      border: none;
+      border: transparent;
       background-color: $colorBackgroundDark;
       color: $colorBackgroundLight;
+      font-size: 1.4rem;
+    }
+
+    .btnClose {
+      padding: .7rem 1.5rem;
+      border-radius: .5rem;
+      border: transparent;
+      background-color: rgb(185, 12, 12);
+      color: $colorBackgroundLight;
+      font-size: 1.4rem;
     }
   }
 

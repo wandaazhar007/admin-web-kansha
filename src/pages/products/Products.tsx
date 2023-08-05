@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import FormAddProduct from '../../components/formAddProduct/FormAddProduct';
 import ProductList from '../../components/productList/ProductList';
 import './products.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Products = () => {
+  const [buttonAdd, setButtonAdd] = useState(false);
+
+  const handleAdd = () => {
+    setButtonAdd(!buttonAdd);
+  }
   return (
     <section className="products">
       <div className="header">
-        <h1>All Products</h1>
-        <button>Add Product</button>
+        <h1>All Menus</h1>
+        {!buttonAdd ? (
+          <button className="btnAddProduct" onClick={handleAdd}>Add Product <FontAwesomeIcon icon={faPlus} /></button>
+        ) : (
+          <button className="btnClose" onClick={handleAdd}>Close <FontAwesomeIcon icon={faClose} /></button>
+        )}
       </div>
       {/* <FormAddProduct /> */}
+      {buttonAdd && <FormAddProduct />}
       <div className="content">
         <ProductList />
       </div>
