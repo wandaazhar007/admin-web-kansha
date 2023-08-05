@@ -21,14 +21,16 @@ const FormAddProduct = () => {
     e.preventDefault();
     try {
       axios.post("http://localhost:2000/products", {
-        name: name,
+        name: nae,
         price: price,
         categoryId: categoryId,
         desc: desc,
         image: image
-      })
+      });
+      setIsLoading(true);
     } catch (error: any) {
       setMessage(error.message);
+      setIsLoading(true)
     }
   }
 
@@ -65,14 +67,18 @@ const FormAddProduct = () => {
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="desc">Description</label>
-              <textarea name='desc'></textarea>
+              <textarea name='desc' onChange={(e) => setDesc(e.target.value)}></textarea>
             </div>
             <div className="inputGroup">
               <label htmlFor="image">Image Product</label>
               <input type="file" name='image' />
             </div>
             <div className="inputGroup">
-              <button className="btnSave">Save</button>
+              {!isLoading ? (
+                <button className="btnSave">Save</button>
+              ) : (
+                <button className="btnSave">Loading...</button>
+              )}
             </div>
           </div>
 
