@@ -30,6 +30,23 @@ a {
   width: 32rem;
   background-color: aqua;
   border-right: .2px solid $soft-bg;
+
+  @include tablet {
+    width: 8rem;
+  }
+
+  @include phone {
+    position: absolute;
+    // display: block;
+    left: -20rem;
+  }
+}
+
+.sidebarContainer.on {
+  left: 0;
+  z-index: 99;
+  width: 32rem;
+  // position: static;
 }
 
 .contentContainer {
