@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './productList.scss';
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { ProductContext } from '../../context/ProductContext';
 
 const ProductList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +18,9 @@ const ProductList = () => {
   const [msg, setMsg] = useState("");
 
   const [menus, setMenus] = useState([]);
+  const contextGetMenu: any = useContext(ProductContext);
+  const triggerMenu = contextGetMenu.trigger;
+  const addMenu = contextGetMenu.addMenu;
 
   const getMenu = async () => {
     const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
@@ -24,7 +30,7 @@ const ProductList = () => {
       setPages(response.data.totalPage);
       setRows(response.data.totalRows);
       setIsLoading(false)
-    }, 100)
+    }, 100);
   }
 
   // type selected = any
@@ -47,12 +53,31 @@ const ProductList = () => {
     setIsLoading(true);
   }
 
+
+
+  const handleDelete = async (id: number) => {
+    try {
+      axios.delete(`http://localhost:2000/products/${id}`);
+      toast.success("Product has been deleted successfuly..", {
+        position: toast.POSITION.TOP_CENTER,
+        className: 'toast-message'
+      });
+      contextGetMenu.setAddMenu(!addMenu);
+
+    } catch (error: any) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+    }
+  }
+
   useEffect(() => {
-    getMenu();
-  }, [querySearch, page]);
+    getMenu()
+  }, [querySearch, page, triggerMenu]);
 
   return (
     <section className="productList">
+      <ToastContainer />
       <div className="overflow-x-auto">
         <div className="search">
           <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
@@ -120,7 +145,7 @@ const ProductList = () => {
                     <th>
                       <div className="actions">
                         <div className="detail"> <FontAwesomeIcon icon={faEdit} /></div>
-                        <div className="delete"><FontAwesomeIcon icon={faTrash} /></div>
+                        <div className="delete" onClick={() => handleDelete(menu.id)}><FontAwesomeIcon icon={faTrash} /></div>
                       </div>
                     </th>
                   </tr>

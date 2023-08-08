@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Products = () => {
-  const [buttonAdd, setButtonAdd] = useState(false);
+  const [buttonAdd, setButtonAdd] = useState<any>(false);
 
   const handleAdd = () => {
     setButtonAdd(!buttonAdd);
@@ -22,7 +22,7 @@ const Products = () => {
         )}
       </div>
       {/* <FormAddProduct /> */}
-      {buttonAdd && <FormAddProduct />}
+      {buttonAdd && <FormAddProduct setButtonAdd={setButtonAdd} buttonAdd={buttonAdd} />}
       <div className="content">
         <ProductList />
       </div>

@@ -1,38 +1,121 @@
 import axios from 'axios';
 import './formAddProduct.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../../context/ProductContext';
 
-const FormAddProduct = () => {
-  const [name, setname] = useState("");
+const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
+  const [preview, setPreview] = useState('');
   const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+
+  const trigger: any = useContext(ProductContext);
+  const addMenu = trigger.AddMenu;
 
   const getCategory = async () => {
     const response = await axios.get('http://localhost:2000/category');
     // console.log(response.data.result);
     setSelectCategory(response.data.result);
   }
-  const handleSubmit = (e: any) => {
+
+  const loadImage = (e: any) => {
+    const file = e.target.files[0];
+    console.log(file.name);
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      axios.post("http://localhost:2000/products", {
-        name: nae,
+      await axios.post("http://localhost:2000/products", {
+        name: name,
+        slug: slug,
         price: price,
-        categoryId: categoryId,
         desc: desc,
+        categoryId: categoryId,
         image: image
+      }, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
       });
-      setIsLoading(true);
+      toast.success("Product has been created successfuly..", {
+        position: toast.POSITION.TOP_CENTER,
+        className: 'toast-message'
+      });
+      setName('');
+      setPrice('');
+      setCategoryId('');
+      setDesc('');
+      setSlug('');
+      setImage('');
+      setButtonAdd(!buttonAdd)
+      trigger.setAddMenu(!addMenu);
+      setTimeout(() => {
+        navigate('/products')
+      }, 2500);
     } catch (error: any) {
-      setMessage(error.message);
-      setIsLoading(true)
+      if (error.response) {
+        setMessage(error.response.data.msg);
+        console.log(error.response.data.msg)
+      }
     }
   }
+
+  const slugify = (str: any) => {
+    return str
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  // const saveProduct = async (e: any) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.post('http://localhost:2000/products', {
+  //       name: name,
+  //       price: price,
+  //       desc: desc,
+  //       categoryId: categoryId,
+  //       image: image
+  //     }, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       }
+  //     });
+  //     setName('');
+  //     setPrice('');
+  //     setCategoryId('');
+  //     setDesc('');
+  //     toast.success("Product has been created successfuly..", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //       className: 'toast-message'
+  //     });
+  //     setTimeout(() => {
+  //       navigate('/products')
+  //     }, 2500);
+  //   } catch (error: any) {
+  //     if (error.response) {
+  //       setMessage(error.response.data.msg);
+  //       console.log(error.response.data.msg)
+  //     }
+  //   }
+  // }
+
 
   useEffect(() => {
     getCategory();
@@ -41,13 +124,17 @@ const FormAddProduct = () => {
   return (
     <section className="formAddProduct">
       <div className="formContainer">
-        {message && <p>{message}</p>}
         <form onSubmit={handleSubmit}>
-
+          <ToastContainer />
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="name">Product Name</label>
-              <input type="text" name='name' onChange={(e) => setname(e.target.value)} value={name} />
+              <input type="text" name='name' onChange={(e) => { setName(e.target.value); setSlug(slugify(name)) }} value={name} />
+            </div>
+            <div className="inputGroup">
+              <label htmlFor="slug">Slug</label>
+              <input type="text" name='slug' readOnly value={slug} />
+              {slug}
             </div>
             <div className="inputGroup">
               <label htmlFor="price">Price</label>
@@ -58,7 +145,7 @@ const FormAddProduct = () => {
               <select name="categoryId" id="" onChange={(e) => setCategoryId(e.target.value)}>
                 <option value=""></option>
                 {selectCategory.map((category: any) => (
-                  <option value={category.id}>{category.name}</option>
+                  <option value={category.id} key={category.id}>{category.name}</option>
                 ))}
               </select>
             </div>
@@ -67,11 +154,16 @@ const FormAddProduct = () => {
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="desc">Description</label>
-              <textarea name='desc' onChange={(e) => setDesc(e.target.value)}></textarea>
+              <textarea name='desc' onChange={(e) => { setDesc(e.target.value); setMessage('') }}></textarea>
             </div>
             <div className="inputGroup">
               <label htmlFor="image">Image Product</label>
-              <input type="file" name='image' />
+              <input type="file" name='image' id="image" onChange={loadImage} />
+              {preview ? (
+                <img src={preview} width={"300px"} />
+              ) : (
+                ""
+              )}
             </div>
             <div className="inputGroup">
               {!isLoading ? (
@@ -79,6 +171,7 @@ const FormAddProduct = () => {
               ) : (
                 <button className="btnSave">Loading...</button>
               )}
+              {message && <p style={{ textAlign: "center", color: "red", fontSize: "12px" }}>{message}</p>}
             </div>
           </div>
 

@@ -7,21 +7,24 @@ import Products from "./pages/products/Products";
 import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import { MenuProvider } from './context/ProductContext';
 
 function App() {
   const Layout = () => {
     return (
       <div className="main">
-        <Navbar />
-        <div className="allContainer">
-          <div className="sidebarContainer">
-            <Sidebar />
+        <MenuProvider>
+          <Navbar />
+          <div className="allContainer">
+            <div className="sidebarContainer on">
+              <Sidebar />
+            </div>
+            <div className="contentContainer">
+              <Outlet />
+            </div>
           </div>
-          <div className="contentContainer">
-            <Outlet />
-          </div>
-        </div>
-        <Footer />
+          <Footer />
+        </MenuProvider>
       </div>
     )
   }
