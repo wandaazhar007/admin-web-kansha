@@ -1,0 +1,163 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.categoryList {
+  th {
+    font-size: 1.6rem;
+    color: grey;
+  }
+
+  td {
+    font-size: 1.4rem;
+    color: grey;
+  }
+
+  .search {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+
+    input {
+      background-color: transparent;
+      height: 2.6rem;
+      width: 20rem;
+      padding: 1rem;
+      color: none;
+      border: transparent;
+      border-bottom: .001rem solid grey;
+      font-size: 1.4rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+
+  .detail {
+    color: $colorBackgroundDark;
+    cursor: pointer;
+  }
+
+  .delete {
+    color: rgb(177, 11, 11);
+    cursor: pointer;
+  }
+}
+
+.messageTotalPage {
+  font-size: 1.4rem;
+  color: $grey-color;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.messageFooter {
+  font-size: 1.4rem;
+  color: red;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .box-container {
+    display: flex;
+    gap: 1.5rem;
+
+    // @include tablet {
+    //   gap: 1rem;
+    // }
+
+    .link {
+      height: 3.5rem;
+      width: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: .6rem;
+      border: .1rem solid $colorBackgroundDark;
+      color: $colorBackgroundDark;
+
+      // @include tablet {
+      //   height: 2.5rem;
+      //   width: 2.5rem;
+      //   font-size: 1.4rem;
+      // }
+    }
+
+    .active {
+      background-color: $colorBackgroundDark;
+      color: $colorBackgroundLight;
+    }
+
+    .disabled {
+      background-color: grey-color;
+      color: $colorBackgroundDark;
+      cursor: not-allowed;
+      opacity: .3;
+    }
+  }
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+// .skeleton.box-images-skeleton {
+//   opacity: .5;
+//   width: 12.5rem;
+//   height: 10rem;
+//   border-radius: 1rem;
+// }
+
+.skeleton.skeletonName {
+  width: 10rem;
+  height: 1.64rem;
+  border-radius: .5rem;
+}
+
+.skeleton.skeletonSmallCategory {
+  width: 5rem;
+  height: .7rem;
+  border-radius: .5rem;
+  margin-top: .5rem;
+}
+
+.skeleton.skeletonPrice {
+  width: 5rem;
+  height: 1.64rem;
+  border-radius: .5rem;
+}
+
+.skeleton.skeletonCategory {
+  width: 7rem;
+  height: 1.64rem;
+  border-radius: .5rem;
+}
+
+.skeleton.skeletonAction {
+  width: 5rem;
+  height: 2rem;
+  border-radius: .5rem;
+  border: none;
+}

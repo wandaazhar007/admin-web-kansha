@@ -1,20 +1,19 @@
 import axios from 'axios';
-import './formAddProduct.scss';
+import './formAddUser.scss';
 import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
 
-const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
+const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
-  const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [desc, setDesc] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("")
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState('');
-  const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -23,11 +22,6 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const trigger: any = useContext(ProductContext);
   const addMenu = trigger.AddMenu;
 
-  const getCategory = async () => {
-    const response = await axios.get('http://localhost:2000/category');
-    // console.log(response.data.result);
-    setSelectCategory(response.data.result);
-  }
 
   const loadImage = (e: any) => {
     const file = e.target.files[0];
@@ -39,54 +33,37 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2000/products", {
+      await axios.post("http://localhost:2000/user", {
         name: name,
-        slug: slug,
-        price: price,
-        desc: desc,
-        categoryId: categoryId,
-        image: image
+        email: email,
+        password: password,
+        confPassword: confPassword,
+        role: role,
+        image: image,
       }, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
       });
-      toast.success("Product has been created successfuly..", {
+      toast.success("User has been created successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
       setName('');
-      setPrice('');
-      setCategoryId('');
-      setDesc('');
-      setSlug('');
+      setEmail('');
+      setRole('');
       setImage('');
       setButtonAdd(!buttonAdd)
       trigger.setAddMenu(!addMenu);
       setTimeout(() => {
-        navigate('/products')
+        navigate('/users')
       }, 2500);
     } catch (error: any) {
       if (error.response) {
         setMessage(error.response.data.msg);
-        console.log(error.response.data.msg)
       }
     }
   }
-
-  const slugify = (str: any) => {
-    return str
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
-
-
-  useEffect(() => {
-    getCategory();
-  }, []);
 
   return (
     <section className="formAddProduct">
@@ -95,36 +72,35 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
           <ToastContainer />
           <div className="col">
             <div className="inputGroup">
-              <label htmlFor="name">Product Name</label>
-              <input type="text" name='name' onChange={(e) => { setName(e.target.value); setSlug(slugify(name)) }} value={name} />
+              <label htmlFor="name">User Name</label>
+              <input type="text" required name='name' onChange={(e) => setName(e.target.value)} value={name} />
             </div>
             <div className="inputGroup">
-              <label htmlFor="slug">Slug</label>
-              <input type="text" name='slug' readOnly value={slug} />
-              {slug}
+              <label htmlFor="email">Email</label>
+              <input type="email" required name='email' onChange={(e) => setEmail(e.target.value)} value={email} />
             </div>
             <div className="inputGroup">
-              <label htmlFor="price">Price</label>
-              <input type="text" name='price' onChange={(e) => setPrice(e.target.value)} value={price} />
+              <label htmlFor="password">Password</label>
+              <input type="password" required name='password' onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className="inputGroup">
-              <label htmlFor="categoryId">Category</label>
-              <select name="categoryId" id="" onChange={(e) => setCategoryId(e.target.value)}>
-                <option value=""></option>
-                {selectCategory.map((category: any) => (
-                  <option value={category.id} key={category.id}>{category.name}</option>
-                ))}
-              </select>
+              <label htmlFor="confPassword">Confrim Password</label>
+              <input type="password" required name='confPassword' onChange={(e) => setConfPassword(e.target.value)} value={confPassword} />
             </div>
           </div>
 
           <div className="col">
             <div className="inputGroup">
-              <label htmlFor="desc">Description</label>
-              <textarea name='desc' onChange={(e) => { setDesc(e.target.value); setMessage('') }}></textarea>
+              <label htmlFor="role">Role</label>
+              <select name="role" id="" onChange={(e) => setRole(e.target.value)}>
+                <option value=""></option>
+                <option value={parseInt("2")}>User</option>
+                <option value={parseInt("1")}>Admin</option>
+
+              </select>
             </div>
             <div className="inputGroup">
-              <label htmlFor="image">Image Product</label>
+              <label htmlFor="image">Profile Picture</label>
               <input type="file" name='image' id="image" onChange={loadImage} />
               {preview ? (
                 <img src={preview} width={"300px"} />
@@ -148,4 +124,4 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   );
 }
 
-export default FormAddProduct;
+export default FormAddUser;

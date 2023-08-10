@@ -1,5 +1,5 @@
+import './categoryList.scss';
 import { useContext, useEffect, useState } from 'react';
-import './productList.scss';
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ProductContext } from '../../context/ProductContext';
-import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
+import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
 
-const ProductList = () => {
+const CategoryList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -18,24 +18,21 @@ const ProductList = () => {
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [propSlug, setPropSlug] = useState('')
   const [propId, setPropId] = useState('');
-  const [propName, setPropName] = useState('');
-  const [propPrice, setPropPrice] = useState(0);
-  const [menus, setMenus] = useState([]);
+  const [categories, setCategories] = useState([]);
   const contextGetMenu: any = useContext(ProductContext);
   const triggerMenu = contextGetMenu.trigger;
   const addMenu = contextGetMenu.addMenu;
 
-  const getMenu = async () => {
-    const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
+  const getCategories = async () => {
+    const response = await axios.get(`http://localhost:2000/category?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
-      setMenus(response.data.result);
+      setCategories(response.data.result);
       setPage(response.data.page);
       setPages(response.data.totalPage);
       setRows(response.data.totalRows);
       setIsLoading(false)
-      // console.log(response.data.result);
+      console.log(response.data.result);
     }, 100);
   }
 
@@ -63,8 +60,8 @@ const ProductList = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      axios.delete(`http://localhost:2000/products/${id}`);
-      toast.success("Product has been deleted successfuly..", {
+      axios.delete(`http://localhost:2000/category/${id}`);
+      toast.success("Category has been deleted successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
@@ -82,12 +79,12 @@ const ProductList = () => {
     setPropId(id);
   }
   useEffect(() => {
-    getMenu()
+    getCategories()
   }, [querySearch, page, triggerMenu]);
 
   return (
     <>
-      <section className="productList">
+      <section className="categoryList">
         <ToastContainer />
         <div className="overflow-x-auto">
           <div className="search">
@@ -97,9 +94,9 @@ const ProductList = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>Name Products</th>
-                <th>Price</th>
-                <th>Category</th>
+                <th>Name Category</th>
+                <th>Slug</th>
+                <th>Created At</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -107,18 +104,12 @@ const ProductList = () => {
 
               {isLoading ? (
                 <>
-                  {menus.map((menu: any) => (
-                    <tr key={menu.id}>
+                  {categories.map((category: any) => (
+                    <tr key={category.id}>
                       <td>
                         <div className="flex items-center space-x-3">
-                          <div className="avatar">
-                            <div className="skeleton mask mask-squircle w-12 h-12">
-                              {/* <img src="./react.svg" alt="kanhsa" /> */}
-                            </div>
-                          </div>
                           <div>
                             <div className="font-bold skeleton skeletonName"></div>
-                            <div className="text-sm opacity-50 skeleton skeletonSmallCategory"></div>
                           </div>
                         </div>
                       </td>
@@ -136,27 +127,21 @@ const ProductList = () => {
                 </>
               ) : (
                 <>
-                  {menus.map((menu: any, index) => (
+                  {categories.map((category: any, index) => (
                     <tr key={index}>
                       <td>
                         <div className="flex items-center space-x-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img src={menu.urlImage} alt="kanhsa" />
-                            </div>
-                          </div>
                           <div>
-                            <div className="font-bold">{menu.name}</div>
-                            <div className="text-sm opacity-50">{menu.category.name}</div>
+                            <div className="font-bold">{category.name}</div>
                           </div>
                         </div>
                       </td>
-                      <td>${menu.price}</td>
-                      <td>{menu.category.name}</td>
+                      <td>{category.slug}</td>
+                      <td>{category.createdAt}</td>
                       <th>
                         <div className="actions">
-                          <div className="detail" onClick={() => handleModal(menu.id)}> <FontAwesomeIcon icon={faEdit} /></div>
-                          <div className="delete" onClick={() => handleDelete(menu.id)}><FontAwesomeIcon icon={faTrash} /></div>
+                          <div className="detail" onClick={() => handleModal(category.id)}> <FontAwesomeIcon icon={faEdit} /></div>
+                          <div className="delete" onClick={() => handleDelete(category.id)}><FontAwesomeIcon icon={faTrash} /></div>
                         </div>
                       </th>
                     </tr>
@@ -166,7 +151,7 @@ const ProductList = () => {
 
             </tbody>
           </table>
-          <p className="messageTotalPage">Total: {rows} Products | page: {page} page of {pages}</p>
+          <p className="messageTotalPage">Total: {rows} Categories | page: {page} of {pages}</p>
           {msg && <p className="messageFooter">{msg}</p>}
 
           <div className="pagination">
@@ -191,9 +176,9 @@ const ProductList = () => {
 
       </section>
 
-      <ModaleditProduct openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
+      <ModalEditCategory openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
     </>
   );
 }
 
-export default ProductList;
+export default CategoryList;
