@@ -8,6 +8,8 @@ import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import { MenuProvider } from './context/ProductContext';
+import Categories from './pages/categories/Categories';
+import Users from './pages/users/Users';
 
 function App() {
   const Layout = () => {
@@ -44,7 +46,11 @@ function App() {
         },
         {
           path: "/categories",
-          element: <Products />
+          element: <Categories />
+        },
+        {
+          path: "/users",
+          element: <Users />
         }
       ]
     },

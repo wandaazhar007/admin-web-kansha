@@ -1,4 +1,4 @@
-import './modal-edit-product.scss';
+import './modalEditUser.scss';
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,57 +6,42 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ProductContext } from '../../context/ProductContext';
 import { useNavigate } from 'react-router-dom';
 
-const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
+const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingBtn, setIsLoadingBtn] = useState(true);
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
-  const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [categoryName, setCategoryName] = useState("")
-  const [desc, setDesc] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const [image, setImage] = useState("");
   const [urlImage, setUrlImage] = useState('');
   const [preview, setPreview] = useState('');
-  const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
   const trigger: any = useContext(ProductContext);
   const addMenu = trigger.AddMenu;
   const navigate = useNavigate();
 
-  const getProductById = async () => {
+  const getUserById = async () => {
     // const response = await axios.get(`https://kanshaapi.birojasa-sahabat.com/products/${propId}`);
-    const response = await axios.get(`http://localhost:2000/products/${propId}`);
+    const response = await axios.get(`http://localhost:2000/user/${propId}`);
 
     setTimeout(() => {
       setName(response.data.name);
-      setPrice(response.data.price);
-      setDesc(response.data.desc);
-      setSlug(response.data.slug)
+      setEmail(response.data.email);
+      setRole(response.data.role);
       setUrlImage(response.data.urlImage);
-      setCategoryId(response.data.category.id);
-      setCategoryName(response.data.category.name);
       setPreview(response.data.urlImage)
       setIsLoading(false)
     }, 500);
   }
 
-  const getCategory = async () => {
-    const response = await axios.get('http://localhost:2000/category');
-    // console.log(response.data.result);
-    setSelectCategory(response.data.result);
-  }
-
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:2000/products/${propId}`, {
+      await axios.patch(`http://localhost:2000/user/${propId}`, {
         name: name,
-        slug: slug,
-        price: price,
-        desc: desc,
-        categoryId: categoryId,
+        email: email,
+        role: role,
         image: image
       }, {
         headers: {
@@ -64,12 +49,10 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
         }
       });
       setName('');
-      setPrice('');
-      setCategoryId('');
-      setDesc('');
-      setSlug('');
+      setEmail('');
+      setRole('');
       setImage('');
-      toast.success("Product has been updated successfuly..", {
+      toast.success("User has been updated successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
@@ -83,8 +66,6 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
     }
   }
 
-
-
   const loadImage = (e: any) => {
     const file = e.target.files[0];
     console.log(file.name);
@@ -92,17 +73,8 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
     setPreview(URL.createObjectURL(file));
   };
 
-  const slugify = (str: any) => {
-    return str
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
   useEffect(() => {
-    getProductById();
-    getCategory()
+    getUserById();
   }, [])
 
   return (
@@ -114,34 +86,26 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
             <div className="col">
               <div className="inputGroup">
                 <label htmlFor="name">Product Name</label>
-                <input type="text" name='name' onChange={(e) => { setName(e.target.value); setSlug(slugify(name)) }} value={name} />
+                <input type="text" required name='name' onChange={(e) => setName(e.target.value)} value={name} />
               </div>
               <div className="inputGroup">
-                <label htmlFor="slug">Slug</label>
-                <input type="text" name='slug' readOnly value={slug} />
+                <label htmlFor="email">Email</label>
+                <input type="email" required name='slug' readOnly value={email} />
               </div>
               <div className="inputGroup">
-                <label htmlFor="price">Price</label>
-                <input type="text" name='price' onChange={(e) => setPrice(e.target.value)} value={price} />
-              </div>
-              <div className="inputGroup">
-                <label htmlFor="categoryId">Category</label>
-                <select name="categoryId" id="" onChange={(e) => setCategoryId(e.target.value)}>
-                  <option value={categoryId}>{categoryName}</option>
-                  {selectCategory.map((category: any) => (
-                    <option value={category.id} key={category.id}>{category.name}</option>
-                  ))}
+                <label htmlFor="role">Role</label>
+                <select name="role" id="" onChange={(e) => setRole(e.target.value)}>
+                  <option value={role}>{role}</option>
+                  <option value={parseInt("2")}>User</option>
+                  <option value={parseInt("1")}>Admin</option>
                 </select>
               </div>
             </div>
 
             <div className="col">
+
               <div className="inputGroup">
-                <label htmlFor="desc">Description</label>
-                <textarea name='desc' onChange={(e) => { setDesc(e.target.value); setMessage('') }} value={desc}></textarea>
-              </div>
-              <div className="inputGroup">
-                <label htmlFor="image">Image Product</label>
+                <label htmlFor="image">Profile Image</label>
                 <input type="file" name='image' id="image" onChange={loadImage} />
                 {preview ? (
                   <img src={preview} width={"300px"} />
@@ -151,7 +115,7 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
               </div>
               <div className="inputGroup">
                 {!isLoading ? (
-                  <button className="btnSave">Save</button>
+                  <button className="btnSave">Update</button>
                 ) : (
                   <button className="btnSave">Loading...</button>
                 )}
@@ -167,4 +131,4 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
   );
 }
 
-export default ModaleditProduct;
+export default ModalEditUser;

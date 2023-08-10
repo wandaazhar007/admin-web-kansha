@@ -1,0 +1,38 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.categories {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: $dark-color;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .btnAddProduct {
+      padding: .7rem 1.5rem;
+      border-radius: .5rem;
+      border: transparent;
+      background-color: $colorBackgroundDark;
+      color: $colorBackgroundLight;
+      font-size: 1.4rem;
+    }
+
+    .btnClose {
+      padding: .7rem 1.5rem;
+      border-radius: .5rem;
+      border: transparent;
+      background-color: rgb(185, 12, 12);
+      color: $colorBackgroundLight;
+      font-size: 1.4rem;
+    }
+  }
+
+  // .content {
+  // }
+}

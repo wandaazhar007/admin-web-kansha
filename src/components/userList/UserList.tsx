@@ -1,5 +1,5 @@
+import './userList.scss';
 import { useContext, useEffect, useState } from 'react';
-import './productList.scss';
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ProductContext } from '../../context/ProductContext';
-import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
+import ModalEditUser from '../modalEditUser/ModalEditUser';
 
-const ProductList = () => {
+const CategoryList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -18,24 +18,20 @@ const ProductList = () => {
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [propSlug, setPropSlug] = useState('')
   const [propId, setPropId] = useState('');
-  const [propName, setPropName] = useState('');
-  const [propPrice, setPropPrice] = useState(0);
-  const [menus, setMenus] = useState([]);
+  const [users, setUsers] = useState([]);
   const contextGetMenu: any = useContext(ProductContext);
   const triggerMenu = contextGetMenu.trigger;
   const addMenu = contextGetMenu.addMenu;
 
-  const getMenu = async () => {
-    const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
+  const getUsers = async () => {
+    const response = await axios.get(`http://localhost:2000/user?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
-      setMenus(response.data.result);
+      setUsers(response.data.result);
       setPage(response.data.page);
       setPages(response.data.totalPage);
       setRows(response.data.totalRows);
       setIsLoading(false)
-      // console.log(response.data.result);
     }, 100);
   }
 
@@ -63,8 +59,8 @@ const ProductList = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      axios.delete(`http://localhost:2000/products/${id}`);
-      toast.success("Product has been deleted successfuly..", {
+      axios.delete(`http://localhost:2000/user/${id}`);
+      toast.success("User has been deleted successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
@@ -82,12 +78,12 @@ const ProductList = () => {
     setPropId(id);
   }
   useEffect(() => {
-    getMenu()
+    getUsers();
   }, [querySearch, page, triggerMenu]);
 
   return (
     <>
-      <section className="productList">
+      <section className="categoryList">
         <ToastContainer />
         <div className="overflow-x-auto">
           <div className="search">
@@ -97,9 +93,10 @@ const ProductList = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>Name Products</th>
-                <th>Price</th>
-                <th>Category</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Created At</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -107,8 +104,8 @@ const ProductList = () => {
 
               {isLoading ? (
                 <>
-                  {menus.map((menu: any) => (
-                    <tr key={menu.id}>
+                  {users.map((user: any) => (
+                    <tr key={user.id}>
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
@@ -118,12 +115,14 @@ const ProductList = () => {
                           </div>
                           <div>
                             <div className="font-bold skeleton skeletonName"></div>
-                            <div className="text-sm opacity-50 skeleton skeletonSmallCategory"></div>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div className="skeleton skeletonPrice"></div>
+                      </td>
+                      <td>
+                        <div className="skeleton skeletonCategory"></div>
                       </td>
                       <td>
                         <div className="skeleton skeletonCategory"></div>
@@ -136,27 +135,27 @@ const ProductList = () => {
                 </>
               ) : (
                 <>
-                  {menus.map((menu: any, index) => (
-                    <tr key={index}>
+                  {users.map((user: any) => (
+                    <tr key={user.id}>
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                              <img src={menu.urlImage} alt="kanhsa" />
+                              <img src={user.urlImage} alt="kanhsa" />
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold">{menu.name}</div>
-                            <div className="text-sm opacity-50">{menu.category.name}</div>
+                            <div className="font-bold">{user.name}</div>
                           </div>
                         </div>
                       </td>
-                      <td>${menu.price}</td>
-                      <td>{menu.category.name}</td>
+                      <td>{user.email}</td>
+                      <td>{user.role === 1 ? 'Admin' : 'User'}</td>
+                      <td>{user.createdAt}</td>
                       <th>
                         <div className="actions">
-                          <div className="detail" onClick={() => handleModal(menu.id)}> <FontAwesomeIcon icon={faEdit} /></div>
-                          <div className="delete" onClick={() => handleDelete(menu.id)}><FontAwesomeIcon icon={faTrash} /></div>
+                          <div className="detail" onClick={() => handleModal(user.id)}> <FontAwesomeIcon icon={faEdit} /></div>
+                          <div className="delete" onClick={() => handleDelete(user.id)}><FontAwesomeIcon icon={faTrash} /></div>
                         </div>
                       </th>
                     </tr>
@@ -166,7 +165,7 @@ const ProductList = () => {
 
             </tbody>
           </table>
-          <p className="messageTotalPage">Total: {rows} Products | page: {page} page of {pages}</p>
+          <p className="messageTotalPage">Total: {rows} Users | page: {page} of {pages}</p>
           {msg && <p className="messageFooter">{msg}</p>}
 
           <div className="pagination">
@@ -191,9 +190,9 @@ const ProductList = () => {
 
       </section>
 
-      <ModaleditProduct openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
+      <ModalEditUser openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
     </>
   );
 }
 
-export default ProductList;
+export default CategoryList;
