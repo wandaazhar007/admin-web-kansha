@@ -2,6 +2,8 @@
 
 Welcome to the Website repository! This project showcases a modern and interactive website built using TypeScript, React, Vite, and a stack of powerful libraries and tools. Whether you're a developer looking to learn or someone passionate about creating engaging web experiences, this project has you covered.
 
+![dashboard](public/ss_1.png)
+
 ## Features
 
 - Dynamic UI components and smooth transitions powered by React.
