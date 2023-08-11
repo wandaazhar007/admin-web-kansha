@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 import ModalEditUser from '../modalEditUser/ModalEditUser';
 
 const CategoryList = () => {
@@ -20,9 +20,8 @@ const CategoryList = () => {
   const [openModal, setOpenModal] = useState(false);
   const [propId, setPropId] = useState('');
   const [users, setUsers] = useState([]);
-  const contextGetMenu: any = useContext(ProductContext);
-  const triggerMenu = contextGetMenu.trigger;
-  const addMenu = contextGetMenu.addMenu;
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
 
   const getUsers = async () => {
     const response = await axios.get(`http://localhost:2000/user?search_query=${querySearch}&page=${page}&limit=${limit}`);
@@ -64,8 +63,7 @@ const CategoryList = () => {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
-      contextGetMenu.setAddMenu(!addMenu);
-
+      triggerCon.trigger();
     } catch (error: any) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -79,7 +77,8 @@ const CategoryList = () => {
   }
   useEffect(() => {
     getUsers();
-  }, [querySearch, page, triggerMenu]);
+    console.log(active)
+  }, [querySearch, page, active]);
 
   return (
     <>

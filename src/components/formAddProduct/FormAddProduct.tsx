@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 
 const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const [name, setName] = useState("");
@@ -20,12 +20,11 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const navigate = useNavigate();
 
 
-  const trigger: any = useContext(ProductContext);
-  const addMenu = trigger.AddMenu;
+  const trigger: any = useContext(TriggerContext);
+  const active = trigger.active;
 
   const getCategory = async () => {
     const response = await axios.get('http://localhost:2000/category');
-    // console.log(response.data.result);
     setSelectCategory(response.data.result);
   }
 
@@ -62,7 +61,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
       setSlug('');
       setImage('');
       setButtonAdd(!buttonAdd)
-      trigger.setAddMenu(!addMenu);
+      trigger.trigger();
       setTimeout(() => {
         navigate('/products')
       }, 2500);

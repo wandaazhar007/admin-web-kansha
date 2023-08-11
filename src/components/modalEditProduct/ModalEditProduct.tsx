@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 import { useNavigate } from 'react-router-dom';
 
 const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
@@ -21,9 +21,8 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
   const [preview, setPreview] = useState('');
   const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
-  const trigger: any = useContext(ProductContext);
-  const addMenu = trigger.AddMenu;
-  const navigate = useNavigate();
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
 
   const getProductById = async () => {
     // const response = await axios.get(`https://kanshaapi.birojasa-sahabat.com/products/${propId}`);
@@ -44,7 +43,6 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
 
   const getCategory = async () => {
     const response = await axios.get('http://localhost:2000/category');
-    // console.log(response.data.result);
     setSelectCategory(response.data.result);
   }
 
@@ -73,7 +71,7 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
-      trigger.setAddMenu(!addMenu);
+      triggerCon.trigger();
       closeModal()
     } catch (error: any) {
       if (error.response) {

@@ -4,15 +4,15 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 
 const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const trigger: any = useContext(ProductContext);
-  const addMenu = trigger.AddMenu;
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
   const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
@@ -29,7 +29,7 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
       setName('');
       setSlug('')
       setButtonAdd(!buttonAdd)
-      trigger.setAddMenu(!addMenu);
+      triggerCon.trigger();
       setTimeout(() => {
         navigate('/categories')
       }, 2500);

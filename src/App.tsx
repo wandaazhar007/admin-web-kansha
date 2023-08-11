@@ -7,7 +7,7 @@ import Products from "./pages/products/Products";
 import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
-import { MenuProvider } from './context/ProductContext';
+import { TriggerProvider } from './context/TriggerContext';
 import Categories from './pages/categories/Categories';
 import Users from './pages/users/Users';
 
@@ -15,7 +15,7 @@ function App() {
   const Layout = () => {
     return (
       <div className="main">
-        <MenuProvider>
+        <TriggerProvider>
           <Navbar />
           <div className="allContainer">
             <div className="sidebarContainer on">
@@ -26,7 +26,7 @@ function App() {
             </div>
           </div>
           <Footer />
-        </MenuProvider>
+        </TriggerProvider>
       </div>
     )
   }

@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
 
 const ProductList = () => {
@@ -23,9 +23,8 @@ const ProductList = () => {
   const [propName, setPropName] = useState('');
   const [propPrice, setPropPrice] = useState(0);
   const [menus, setMenus] = useState([]);
-  const contextGetMenu: any = useContext(ProductContext);
-  const triggerMenu = contextGetMenu.trigger;
-  const addMenu = contextGetMenu.addMenu;
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
 
   const getMenu = async () => {
     const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
@@ -68,7 +67,7 @@ const ProductList = () => {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
-      contextGetMenu.setAddMenu(!addMenu);
+      triggerCon.trigger();
 
     } catch (error: any) {
       if (error.response) {
@@ -83,7 +82,7 @@ const ProductList = () => {
   }
   useEffect(() => {
     getMenu()
-  }, [querySearch, page, triggerMenu]);
+  }, [querySearch, page, active]);
 
   return (
     <>
