@@ -27,7 +27,7 @@ const ProductList = () => {
   const active = triggerCon.active;
 
   const getMenu = async () => {
-    const response = await axios.get(`http://localhost:2000/search-products?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
       setMenus(response.data.result);
       setPage(response.data.page);
@@ -62,7 +62,7 @@ const ProductList = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      axios.delete(`http://localhost:2000/products/${id}`);
+      axios.delete(`${import.meta.env.VITE_GET_ALL_PRODUCT}/${id}`);
       toast.success("Product has been deleted successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'

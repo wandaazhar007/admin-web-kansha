@@ -18,7 +18,7 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2000/category", {
+      await axios.post(import.meta.env.VITE_GET_ALL_CATEGORY, {
         name: name,
         slug: slug,
       });

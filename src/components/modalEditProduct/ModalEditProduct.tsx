@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
 import { useNavigate } from 'react-router-dom';
 
-const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
+const ModaleditProduct = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingBtn, setIsLoadingBtn] = useState(true);
@@ -25,8 +25,7 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
   const active = triggerCon.active;
 
   const getProductById = async () => {
-    // const response = await axios.get(`https://kanshaapi.birojasa-sahabat.com/products/${propId}`);
-    const response = await axios.get(`http://localhost:2000/products/${propId}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_PRODUCT}/${propId}`);
 
     setTimeout(() => {
       setName(response.data.name);
@@ -42,14 +41,14 @@ const ModaleditProduct = ({ openModal, closeModal, propId, setButtonAdd, buttonA
   }
 
   const getCategory = async () => {
-    const response = await axios.get('http://localhost:2000/category');
+    const response = await axios.get(import.meta.env.VITE_GET_ALL_CATEGORY);
     setSelectCategory(response.data.result);
   }
 
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:2000/products/${propId}`, {
+      await axios.patch(`${import.meta.env.VITE_GET_ALL_PRODUCT}/${propId}`, {
         name: name,
         slug: slug,
         price: price,

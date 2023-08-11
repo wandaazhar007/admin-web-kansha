@@ -15,8 +15,7 @@ const ModalEditCategory = ({ openModal, closeModal, propId, setButtonAdd, button
   const active = triggerCon.active;
 
   const getCategoryById = async () => {
-    // const response = await axios.get(`https://kanshaapi.birojasa-sahabat.com/products/${propId}`);
-    const response = await axios.get(`http://localhost:2000/category/${propId}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${propId}`);
 
     setTimeout(() => {
       setName(response.data.name);
@@ -28,7 +27,7 @@ const ModalEditCategory = ({ openModal, closeModal, propId, setButtonAdd, button
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:2000/category/${propId}`, {
+      await axios.patch(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${propId}`, {
         name: name,
         slug: slug
       });

@@ -22,8 +22,7 @@ const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd 
   const navigate = useNavigate();
 
   const getUserById = async () => {
-    // const response = await axios.get(`https://kanshaapi.birojasa-sahabat.com/products/${propId}`);
-    const response = await axios.get(`http://localhost:2000/user/${propId}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_USER}/${propId}`);
 
     setTimeout(() => {
       setName(response.data.name);
@@ -38,7 +37,7 @@ const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd 
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:2000/user/${propId}`, {
+      await axios.patch(`${import.meta.env.VITE_GET_ALL_USER}/${propId}`, {
         name: name,
         email: email,
         role: role,
