@@ -24,7 +24,7 @@ const CategoryList = () => {
   const active = triggerCon.active;
 
   const getUsers = async () => {
-    const response = await axios.get(`http://localhost:2000/user?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_USER}?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
       setUsers(response.data.result);
       setPage(response.data.page);
@@ -58,7 +58,7 @@ const CategoryList = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      axios.delete(`http://localhost:2000/user/${id}`);
+      axios.delete(`${import.meta.env.VITE_GET_ALL_USER}/${id}`);
       toast.success("User has been deleted successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'

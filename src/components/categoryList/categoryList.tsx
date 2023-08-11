@@ -24,7 +24,7 @@ const CategoryList = () => {
   const active = triggerCon.active;
 
   const getCategories = async () => {
-    const response = await axios.get(`http://localhost:2000/category?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_CATEGORY}?search_query=${querySearch}&page=${page}&limit=${limit}`);
     setTimeout(() => {
       setCategories(response.data.result);
       setPage(response.data.page);
@@ -55,11 +55,11 @@ const CategoryList = () => {
     setIsLoading(true);
   }
 
-
+  // const urlApi : any = import.meta.env.REACT_APP_GET_ALL_CATEGORY;
 
   const handleDelete = async (id: number) => {
     try {
-      axios.delete(`http://localhost:2000/category/${id}`);
+      axios.delete(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${id}`);
       toast.success("Category has been deleted successfuly..", {
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
@@ -79,6 +79,7 @@ const CategoryList = () => {
   }
   useEffect(() => {
     getCategories()
+    // console.log('dotenv', import.meta.env.VITE_GET_ALL_CATEGORY);
   }, [querySearch, page, active]);
 
   return (

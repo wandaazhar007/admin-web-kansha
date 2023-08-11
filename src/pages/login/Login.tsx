@@ -10,10 +10,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e: any) => {
-    // alert('test')
     e.preventDefault();
     try {
-      await axios.post('http://localhost:2000/login', {
+      await axios.post(import.meta.env.LOGIN, {
         email: email,
         password: password
       });
@@ -25,12 +24,11 @@ const Login = () => {
 
   const handleLogout = async () => {
     try {
-      axios.delete('http://localhost:2000/logout');
+      axios.delete(import.meta.env.VITE_LOGOUT);
       navigate('/login');
     } catch (error) {
       console.log(error)
     }
-    // axios.delete('http://localhost:2000/logout');
   }
 
 

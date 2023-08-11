@@ -33,7 +33,7 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2000/user", {
+      await axios.post(import.meta.env.VITE_GET_ALL_USER, {
         name: name,
         email: email,
         password: password,

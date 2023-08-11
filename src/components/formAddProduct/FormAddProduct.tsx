@@ -24,7 +24,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const active = trigger.active;
 
   const getCategory = async () => {
-    const response = await axios.get('http://localhost:2000/category');
+    const response = await axios.get(import.meta.env.VITE_GET_ALL_CATEGORY);
     setSelectCategory(response.data.result);
   }
 
@@ -38,7 +38,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2000/products", {
+      await axios.post(import.meta.env.VITE_GET_ALL_PRODUCT, {
         name: name,
         slug: slug,
         price: price,
