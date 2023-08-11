@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 import { useNavigate } from 'react-router-dom';
 
 const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
@@ -17,8 +17,8 @@ const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd 
   const [urlImage, setUrlImage] = useState('');
   const [preview, setPreview] = useState('');
   const [message, setMessage] = useState("");
-  const trigger: any = useContext(ProductContext);
-  const addMenu = trigger.AddMenu;
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
   const navigate = useNavigate();
 
   const getUserById = async () => {
@@ -56,7 +56,7 @@ const ModalEditUser = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd 
         position: toast.POSITION.TOP_CENTER,
         className: 'toast-message'
       });
-      trigger.setAddMenu(!addMenu);
+      triggerCon.trigger();
       closeModal()
     } catch (error: any) {
       if (error.response) {

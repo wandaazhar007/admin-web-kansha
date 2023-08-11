@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductContext';
+import { TriggerContext } from '../../context/TriggerContext';
 
 const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
   const [name, setName] = useState("");
@@ -19,8 +19,8 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
   const navigate = useNavigate();
 
 
-  const trigger: any = useContext(ProductContext);
-  const addMenu = trigger.AddMenu;
+  const triggerCon: any = useContext(TriggerContext);
+  const active = triggerCon.active;
 
 
   const loadImage = (e: any) => {
@@ -54,7 +54,7 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
       setRole('');
       setImage('');
       setButtonAdd(!buttonAdd)
-      trigger.setAddMenu(!addMenu);
+      triggerCon.trigger();
       setTimeout(() => {
         navigate('/users')
       }, 2500);
