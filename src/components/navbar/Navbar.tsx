@@ -16,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className="user">
           <img src="/wanda-azhar.jpg" alt="" />
-          <span>Wanda</span>
+          <span>Dave G</span>
         </div>
         <img src="settings.svg" className="icon" />
       </div>
