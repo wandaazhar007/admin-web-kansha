@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faClose } from "@fortawesome/free-solid-svg-icons";
 import FormAddUser from '../../components/formAddUser/FormAddUser';
 
-const Users = () => {
+const Users: React.FC = () => {
   const [buttonAdd, setButtonAdd] = useState<any>(false);
 
   const handleAdd = () => {

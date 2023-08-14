@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
 
-const ModalEditCategory = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
+const ModalEditCategory: any = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");

@@ -21,7 +21,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
 
 
   const trigger: any = useContext(TriggerContext);
-  const active = trigger.active;
+  // const active = trigger.active;
 
   const getCategory = async () => {
     const response = await axios.get(import.meta.env.VITE_GET_ALL_CATEGORY);

@@ -1,6 +1,6 @@
 import './navbar.scss';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <section className="navbar">
       <div className="logo">

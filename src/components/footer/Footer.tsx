@@ -1,6 +1,6 @@
 import './footer.scss';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <span>Kansha Express</span>

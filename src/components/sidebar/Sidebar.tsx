@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { menu } from "../../data";
 import './sidebar.scss';
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
   return (
     <section className="sidebar">
       {menu.map((item) => (

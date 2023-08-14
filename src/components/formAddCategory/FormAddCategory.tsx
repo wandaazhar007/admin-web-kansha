@@ -12,7 +12,7 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const triggerCon: any = useContext(TriggerContext);
-  const active = triggerCon.active;
+  // const active = triggerCon.active;
   const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {

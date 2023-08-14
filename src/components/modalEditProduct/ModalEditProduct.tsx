@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
 import { useNavigate } from 'react-router-dom';
 
-const ModaleditProduct = ({ openModal, closeModal, propId }: any) => {
+const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingBtn, setIsLoadingBtn] = useState(true);

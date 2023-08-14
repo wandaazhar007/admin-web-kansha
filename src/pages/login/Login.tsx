@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './login.scss';
 import axios from 'axios';
 
-const Login = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
