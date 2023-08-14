@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TriggerContext } from '../../context/TriggerContext';
 import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
 
-const ProductList = () => {
+const ProductList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10);

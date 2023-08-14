@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   const [name, setname] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState<number>(0);
   const [users, setUsers] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const refreshToken = async () => {
   //   try {
