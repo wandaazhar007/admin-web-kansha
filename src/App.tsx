@@ -10,23 +10,27 @@ import Footer from './components/footer/Footer';
 import { TriggerProvider } from './context/TriggerContext';
 import Categories from './pages/categories/Categories';
 import Users from './pages/users/Users';
+import { SidebarProvider } from './context/SidebarContext';
+import { NavbarProvider } from './context/NavbarContext';
 
 function App() {
   const Layout = () => {
     return (
       <div className="main">
-        <TriggerProvider>
-          <Navbar />
-          <div className="allContainer">
-            <div className="sidebarContainer on">
-              <Sidebar />
-            </div>
-            <div className="contentContainer">
-              <Outlet />
-            </div>
-          </div>
-          <Footer />
-        </TriggerProvider>
+        <NavbarProvider>
+          <SidebarProvider>
+            <TriggerProvider>
+              <Navbar />
+              <div className="allContainer">
+                <Sidebar />
+                <div className="contentContainer">
+                  <Outlet />
+                </div>
+              </div>
+              <Footer />
+            </TriggerProvider>
+          </SidebarProvider>
+        </NavbarProvider>
       </div>
     )
   }
