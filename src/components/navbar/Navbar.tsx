@@ -4,8 +4,12 @@ import { faAngleDown, faBars, faClose } from '@fortawesome/free-solid-svg-icons'
 import { SidebarContext } from '../../context/SidebarContext';
 import { NavbarContext } from '../../context/NavbarContext';
 import { useContext } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+
   const navbarToggle: any = useContext(NavbarContext);
   const activeNavbar = navbarToggle.active;
   const triggerNavbar = navbarToggle.triggerNavbar;
@@ -14,6 +18,16 @@ const Navbar: React.FC = () => {
   const activeSidebar = sidebarToggle.active;
   const triggerSidebar = sidebarToggle.triggerSidebar;
 
+  const handleLogout = async () => {
+    console.log('logout')
+    try {
+      await axios.delete(import.meta.env.VITE_LOGOUT);
+      navigate('/login');
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <section className="navbar">
       <div className="logo">
@@ -21,7 +35,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className={`links  ${activeNavbar ? 'on' : ''}`}>
         <img src="/search.svg" className="icon" />
-        <img src="/app.svg" className="icon" />
+        <img src="/app.svg" className="icon" onClick={handleLogout} />
         <img src="expand.svg" className="icon" />
         <img src="settings.svg" className="icon" />
         <div className="icon notification">
