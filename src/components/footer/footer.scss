@@ -4,14 +4,20 @@
 .footer {
   background-color: $colorBackgroundNavbar;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  justify-content: center;
   width: 100%;
-  padding: 0 5rem;
+  padding: 2rem 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  position: fixed;
 
-  span {
+  .credits {
+    display: flex;
     font-size: 1.4rem;
-    color: $colorBackgroundLight;
+    color: white;
+    text-align: center;
+    line-height: 2.5rem;
   }
 }

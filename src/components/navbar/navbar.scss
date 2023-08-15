@@ -26,9 +26,14 @@
     align-items: center;
     gap: 2rem;
 
+    @include tablet {
+      display: none;
+    }
+
     .icon {
       cursor: pointer;
-      color: gray;
+      color: white;
+      font-size: 1.4rem;
     }
 
     .notification {
@@ -63,6 +68,45 @@
         border-radius: 50%;
         object-fit: cover;
       }
+    }
+  }
+
+  .links.on {
+    display: flex;
+    // align-items: start;
+    justify-content: center;
+    padding: 2rem 0;
+    color: white;
+    // border: .1rem solid salmon;
+    background-color: $colorBackgroundNavbar;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    // flex-direction: column;
+    gap: 2rem;
+    // height: 50rem;
+    transition: .5s linear;
+
+  }
+
+  .toggles {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .togglesIcon {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

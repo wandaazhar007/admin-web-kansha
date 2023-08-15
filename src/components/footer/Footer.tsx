@@ -3,8 +3,9 @@ import './footer.scss';
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
-      <span>Kansha Express</span>
-      <span>Build with love ❤️ By Wanda Azhar</span>
+      <div className="credits">
+        Built with ❤️ by wanda azhar in Michigan, USA
+      </div>
     </footer>
   );
 }
