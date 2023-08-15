@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './login.scss';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignIn } from '@fortawesome/free-solid-svg-icons';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -12,22 +14,15 @@ const Login: React.FC = () => {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post(import.meta.env.LOGIN, {
+      await axios.post(import.meta.env.VITE_LOGIN, {
         email: email,
         password: password
       });
       navigate('/');
     } catch (error: any) {
-      setMsg(error.response.data.msg)
-    }
-  }
-
-  const handleLogout = async () => {
-    try {
-      axios.delete(import.meta.env.VITE_LOGOUT);
-      navigate('/login');
-    } catch (error) {
-      console.log(error)
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
     }
   }
 
@@ -41,7 +36,6 @@ const Login: React.FC = () => {
             <img src='./logo-kansha-header.png' />
           </div>
           <div className="title">
-            <button onClick={handleLogout}>Logout</button>
             <h1>Admin Kansha Express</h1>
             <p>Please login to your account</p>
           </div>
@@ -58,15 +52,15 @@ const Login: React.FC = () => {
               <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="button">
-              <button className='btn btn-logon'>
-                Login
+              <button className='btn btn-login'>
+                Login <FontAwesomeIcon icon={faSignIn} className="icon" />
               </button>
             </div>
           </form>
         </div>
 
         <div className="footer">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, perspiciatis?</p>
+          <p>Built with ❤️ by Wanda Azhar in Michigan, USA</p>
         </div>
       </div>
       {/* </div> */}
