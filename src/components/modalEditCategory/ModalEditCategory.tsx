@@ -5,14 +5,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
 
-const ModalEditCategory: any = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
+const ModalEditCategory: any = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [message, setMessage] = useState("");
   const triggerCon: any = useContext(TriggerContext);
-  const active = triggerCon.active;
+  // const active = triggerCon.active;
 
   const getCategoryById = async () => {
     const response = await axios.get(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${propId}`);
