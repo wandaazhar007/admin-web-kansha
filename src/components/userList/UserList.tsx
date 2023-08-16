@@ -14,7 +14,7 @@ import { parseISO } from 'date-fns';
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
+  // const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState(0);
   const [querySearch, setQuerySearch] = useState("");
   const [rows, setRows] = useState(0);
@@ -26,7 +26,7 @@ const CategoryList: React.FC = () => {
   const active = triggerCon.active;
 
   const getUsers = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_USER}?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_USER}?search_query=${querySearch}&page=${page}&limit=5`);
     setTimeout(() => {
       setUsers(response.data.result);
       setPage(response.data.page);
