@@ -4,12 +4,11 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingBtn, setIsLoadingBtn] = useState(true);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
@@ -17,12 +16,12 @@ const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
   const [categoryName, setCategoryName] = useState("")
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
-  const [urlImage, setUrlImage] = useState('');
+  // const [urlImage, setUrlImage] = useState('');
   const [preview, setPreview] = useState('');
   const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
   const triggerCon: any = useContext(TriggerContext);
-  const active = triggerCon.active;
+  // const active = triggerCon.active;
 
   const getProductById = async () => {
     const response = await axios.get(`${import.meta.env.VITE_GET_ALL_PRODUCT}/${propId}`);
@@ -32,7 +31,7 @@ const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
       setPrice(response.data.price);
       setDesc(response.data.desc);
       setSlug(response.data.slug)
-      setUrlImage(response.data.urlImage);
+      // setUrlImage(response.data.urlImage);
       setCategoryId(response.data.category.id);
       setCategoryName(response.data.category.name);
       setPreview(response.data.urlImage)
