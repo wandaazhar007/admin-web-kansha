@@ -6,14 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
 import { useNavigate } from 'react-router-dom';
 
-const ModalEditUser: any = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
+const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [image, setImage] = useState("");
-  const [urlImage, setUrlImage] = useState('');
+  // const [urlImage, setUrlImage] = useState('');
   const [preview, setPreview] = useState('');
   const [message, setMessage] = useState("");
   const triggerCon: any = useContext(TriggerContext);
@@ -27,7 +27,7 @@ const ModalEditUser: any = ({ openModal, closeModal, propId, setButtonAdd, butto
       setName(response.data.name);
       setEmail(response.data.email);
       setRole(response.data.role);
-      setUrlImage(response.data.urlImage);
+      // setUrlImage(response.data.urlImage);
       setPreview(response.data.urlImage)
       setIsLoading(false)
     }, 500);
