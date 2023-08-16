@@ -20,25 +20,25 @@ const Navbar: React.FC = () => {
   const triggerSidebar = sidebarToggle.triggerSidebar;
 
   const [name, setname] = useState("");
-  const [email, setEmail] = useState("");
-  const [token, setToken] = useState("");
-  const [role, setRole] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [token, setToken] = useState("");
+  // const [role, setRole] = useState("");
+  // const [expire, setExpire] = useState<number>(0);
   const [urlImage, setUrlImage] = useState("");
-  const [expire, setExpire] = useState<number>(0);
 
   const refreshToken = async () => {
     try {
       const response = await axios.get(import.meta.env.VITE_TOKEN);
-      setToken(response.data.accessToken);
+      // setToken(response.data.accessToken);
       console.log('data login', response.data)
       const decoded: any = jwt_decode(response.data.accessToken);
       // console.log(response.data.accessToken)
       console.log(decoded)
       setname(decoded.name);
-      setEmail(decoded.email);
-      setRole
+      // setEmail(decoded.email);
+      // setRole
+      // setExpire(decoded.exp);
       setUrlImage(decoded.urlImage)
-      setExpire(decoded.exp);
     } catch (error: any) {
       console.log(error)
       if (error.response) {
