@@ -17,8 +17,8 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
   const [preview, setPreview] = useState('');
   const [message, setMessage] = useState("");
   const triggerCon: any = useContext(TriggerContext);
-  const active = triggerCon.active;
-  const navigate = useNavigate();
+  // const active = triggerCon.active;
+  // const navigate = useNavigate();
 
   const getUserById = async () => {
     const response = await axios.get(`${import.meta.env.VITE_GET_ALL_USER}/${propId}`);
