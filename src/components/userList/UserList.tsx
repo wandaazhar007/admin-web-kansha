@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TriggerContext } from '../../context/TriggerContext';
 import ModalEditUser from '../modalEditUser/ModalEditUser';
+import format from 'date-fns/format';
+import { parseISO } from 'date-fns';
 
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -150,7 +152,7 @@ const CategoryList: React.FC = () => {
                       </td>
                       <td>{user.email}</td>
                       <td>{user.role === 1 ? 'Admin' : 'User'}</td>
-                      <td>{user.createdAt}</td>
+                      <td>{format(parseISO(user.createdAt), 'yyyy-MM-dd')}</td>
                       <th>
                         <div className="actions">
                           <div className="detail" onClick={() => handleModal(user.id)}> <FontAwesomeIcon icon={faEdit} /></div>

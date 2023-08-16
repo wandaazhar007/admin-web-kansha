@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 const ModalEditUser: any = ({ openModal, closeModal, propId, setButtonAdd, buttonAdd }: any) => {
   if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingBtn, setIsLoadingBtn] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");

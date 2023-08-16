@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './login.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +26,16 @@ const Login: React.FC = () => {
     }
   }
 
+  const checkLogin = async () => {
+    const check = await axios.get(import.meta.env.VITE_TOKEN);
+    if (check) {
+      navigate(-1)
+    }
+  }
+
+  useEffect(() => {
+    checkLogin();
+  }, [])
 
   return (
     <section className="login">
