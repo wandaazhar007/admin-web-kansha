@@ -12,22 +12,22 @@ import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
 const ProductList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
+  // const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState(0);
   const [querySearch, setQuerySearch] = useState("");
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [propSlug, setPropSlug] = useState('')
   const [propId, setPropId] = useState('');
-  const [propName, setPropName] = useState('');
-  const [propPrice, setPropPrice] = useState(0);
+  // const [propSlug, setPropSlug] = useState('')
+  // const [propName, setPropName] = useState('');
+  // const [propPrice, setPropPrice] = useState(0);
   const [menus, setMenus] = useState([]);
   const triggerCon: any = useContext(TriggerContext);
   const active = triggerCon.active;
 
   const getMenu = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=10`);
     setTimeout(() => {
       setMenus(response.data.result);
       setPage(response.data.page);
