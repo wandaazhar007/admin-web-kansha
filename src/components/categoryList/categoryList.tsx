@@ -12,7 +12,7 @@ import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
+  // const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState(0);
   const [querySearch, setQuerySearch] = useState("");
   const [rows, setRows] = useState(0);
@@ -24,7 +24,7 @@ const CategoryList: React.FC = () => {
   const active = triggerCon.active;
 
   const getCategories = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_CATEGORY}?search_query=${querySearch}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`${import.meta.env.VITE_GET_ALL_CATEGORY}?search_query=${querySearch}&page=${page}&limit=5`);
     setTimeout(() => {
       setCategories(response.data.result);
       setPage(response.data.page);
