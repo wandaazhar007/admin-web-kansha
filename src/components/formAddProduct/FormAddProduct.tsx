@@ -3,7 +3,7 @@ import './formAddProduct.scss';
 import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { TriggerContext } from '../../context/TriggerContext';
 
 const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
@@ -17,7 +17,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   const [selectCategory, setSelectCategory] = useState([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   const trigger: any = useContext(TriggerContext);
@@ -62,9 +62,7 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
       setImage('');
       setButtonAdd(!buttonAdd)
       trigger.trigger();
-      setTimeout(() => {
-        navigate('/products')
-      }, 2500);
+      setIsLoading(true);
     } catch (error: any) {
       if (error.response) {
         setMessage(error.response.data.msg);
