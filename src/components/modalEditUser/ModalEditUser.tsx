@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
   if (!openModal) return null;
