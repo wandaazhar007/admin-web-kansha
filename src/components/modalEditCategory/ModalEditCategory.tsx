@@ -61,7 +61,7 @@ const ModalEditCategory: any = ({ openModal, closeModal, propId }: any) => {
 
   return (
     <section className="modalEditCategory">
-      <div className="box-container">
+      <div className="boxContainer">
         <div className="formContainer">
           <form onSubmit={handleUpdate}>
             <ToastContainer />

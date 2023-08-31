@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TriggerContext } from '../../context/TriggerContext';
 import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
+import ModalDelete from '../modalDelete/ModalDelete';
 
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,7 @@ const CategoryList: React.FC = () => {
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const [propId, setPropId] = useState('');
   const [categories, setCategories] = useState([]);
   const triggerCon: any = useContext(TriggerContext);
@@ -57,7 +59,7 @@ const CategoryList: React.FC = () => {
 
   // const urlApi : any = import.meta.env.REACT_APP_GET_ALL_CATEGORY;
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     try {
       axios.delete(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${id}`);
       toast.success("Category has been deleted successfuly..", {
@@ -71,10 +73,18 @@ const CategoryList: React.FC = () => {
         setMsg(error.response.data.msg);
       }
     }
+    setOpenModalDelete(false);
+
+    // alert(id);
   }
 
   const handleModal = (id: string) => {
     setOpenModal(true);
+    setPropId(id);
+  }
+
+  const handleModalDelete = (id: string) => {
+    setOpenModalDelete(true);
     setPropId(id);
   }
   useEffect(() => {
@@ -141,7 +151,7 @@ const CategoryList: React.FC = () => {
                       <th>
                         <div className="actions">
                           <div className="detail" onClick={() => handleModal(category.id)}> <FontAwesomeIcon icon={faEdit} /></div>
-                          <div className="delete" onClick={() => handleDelete(category.id)}><FontAwesomeIcon icon={faTrash} /></div>
+                          <div className="delete" onClick={() => handleModalDelete(category.id)}><FontAwesomeIcon icon={faTrash} /></div>
                         </div>
                       </th>
                     </tr>
@@ -177,6 +187,7 @@ const CategoryList: React.FC = () => {
       </section>
 
       <ModalEditCategory openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
+      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} propId={propId} handleDelete={() => handleDelete(propId)} />
     </>
   );
 }
