@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './modalDelete.scss';
-import { faCancel, faCheckCircle, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faCancel, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-const ModalDelete = ({ openModalDelete, closeModalDelete, propId, handleDelete }: any) => {
+const ModalDelete = ({ openModalDelete, closeModalDelete, name, handleDelete }: any) => {
   if (!openModalDelete) return null;
 
   return (
@@ -10,7 +10,7 @@ const ModalDelete = ({ openModalDelete, closeModalDelete, propId, handleDelete }
       <div className="boxContainer">
         <div className="box">
           <div className="message">
-            Are you sure want to delete?
+            Are you sure want to delete {name}?
           </div>
           <div className="btnGroup">
             <button className="yes" onClick={handleDelete}><FontAwesomeIcon icon={faCheckCircle} /> Yes</button>

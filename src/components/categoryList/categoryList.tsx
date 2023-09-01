@@ -21,6 +21,7 @@ const CategoryList: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [propId, setPropId] = useState('');
+  const [propName, setPropName] = useState('');
   const [categories, setCategories] = useState([]);
   const triggerCon: any = useContext(TriggerContext);
   const active = triggerCon.active;
@@ -81,16 +82,18 @@ const CategoryList: React.FC = () => {
   const handleModal = (id: string) => {
     setOpenModal(true);
     setPropId(id);
+    setPropName(id);
   }
 
   const handleModalDelete = (id: string) => {
     setOpenModalDelete(true);
     setPropId(id);
+    setPropName(id);
   }
   useEffect(() => {
     getCategories()
     // console.log('dotenv', import.meta.env.VITE_GET_ALL_CATEGORY);
-  }, [querySearch, page, active]);
+  }, [querySearch, page, active, openModal, propId]);
 
   return (
     <>
@@ -187,7 +190,7 @@ const CategoryList: React.FC = () => {
       </section>
 
       <ModalEditCategory openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
-      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} propId={propId} handleDelete={() => handleDelete(propId)} />
+      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} propName={propName} handleDelete={() => handleDelete(propId)} />
     </>
   );
 }
