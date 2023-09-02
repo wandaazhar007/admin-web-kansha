@@ -10,6 +10,7 @@ import { TriggerContext } from '../../context/TriggerContext';
 import ModalEditUser from '../modalEditUser/ModalEditUser';
 import format from 'date-fns/format';
 import { parseISO } from 'date-fns';
+import ModalDelete from '../modalDelete/ModalDelete';
 
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,8 +21,10 @@ const CategoryList: React.FC = () => {
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const [propId, setPropId] = useState('');
   const [users, setUsers] = useState([]);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [propId, setPropId] = useState('');
+  const [propName, setPropName] = useState('');
   const triggerCon: any = useContext(TriggerContext);
   const active = triggerCon.active;
 
@@ -58,7 +61,7 @@ const CategoryList: React.FC = () => {
 
 
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     try {
       axios.delete(`${import.meta.env.VITE_GET_ALL_USER}/${id}`);
       toast.success("User has been deleted successfuly..", {
@@ -71,15 +74,23 @@ const CategoryList: React.FC = () => {
         setMsg(error.response.data.msg);
       }
     }
+    setOpenModalDelete(false);
+    getUsers();
   }
 
   const handleModal = (id: string) => {
     setOpenModal(true);
     setPropId(id);
   }
+
+  const handleModalDelete = (id: string) => {
+    setOpenModalDelete(true);
+    setPropId(id);
+    setPropName(id);
+  }
+
   useEffect(() => {
     getUsers();
-    console.log(active)
   }, [querySearch, page, active]);
 
   return (
@@ -156,7 +167,7 @@ const CategoryList: React.FC = () => {
                       <th>
                         <div className="actions">
                           <div className="detail" onClick={() => handleModal(user.id)}> <FontAwesomeIcon icon={faEdit} /></div>
-                          <div className="delete" onClick={() => handleDelete(user.id)}><FontAwesomeIcon icon={faTrash} /></div>
+                          <div className="delete" onClick={() => handleModalDelete(user.id)}><FontAwesomeIcon icon={faTrash} /></div>
                         </div>
                       </th>
                     </tr>
@@ -192,6 +203,7 @@ const CategoryList: React.FC = () => {
       </section>
 
       <ModalEditUser openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
+      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} propName={propName} handleDelete={() => handleDelete(propId)} />
     </>
   );
 }
