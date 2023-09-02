@@ -1,0 +1,112 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.modalEditUser {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  backdrop-filter: blur(.2rem);
+
+  .boxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .formContainer {
+      // background-color: white;
+      padding: 4rem;
+      border-radius: 1rem;
+
+      form {
+        display: flex;
+        // flex-direction: column;
+        flex-wrap: wrap;
+        gap: 1rem;
+        // border: .1rem solid salmon;
+        width: 100%;
+        overflow: auto;
+
+        .col {
+          // border: .1rem solid green;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+
+          .inputGroup {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            color: $colorBackgroundDark;
+
+            label {
+              font-size: 1.4rem;
+            }
+
+            input {
+              font-size: 1.4rem;
+              width: 30rem;
+              height: 4rem;
+              background-color: transparent;
+              border: transparent;
+
+              // border-top: .01rem solid grey;
+              border-bottom: .01rem solid grey;
+              padding: 1rem 0;
+
+              &:focus {
+                outline: none;
+              }
+            }
+
+            textarea {
+              background-color: transparent;
+              border: transparent;
+              border-bottom: .01rem solid grey;
+              font-size: 1.4rem;
+
+              &:focus {
+                outline: none;
+              }
+            }
+
+            select {
+              font-size: 1.4rem;
+              width: 30rem;
+              height: 4rem;
+              background-color: transparent;
+              border: transparent;
+              border-bottom: .01rem solid grey;
+              padding: 1rem 0;
+
+              &:focus {
+                outline: none;
+              }
+            }
+
+            .btnSave {
+              padding: 1rem 2rem;
+              background-color: $colorBackgroundDark;
+              color: $colorBackgroundLight;
+              border-radius: .5rem;
+              font-size: 1.4rem;
+            }
+
+            .btnCancel {
+              padding: 1rem 2rem;
+              background-color: #ac4e4e;
+              color: $colorBackgroundLight;
+              border-radius: .5rem;
+              font-size: 1.4rem;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

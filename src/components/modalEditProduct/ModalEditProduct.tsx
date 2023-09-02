@@ -1,4 +1,4 @@
-import './modal-edit-product.scss';
+import './modalEditProduct.scss';
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';

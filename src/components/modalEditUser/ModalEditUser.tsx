@@ -11,7 +11,7 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(1);
   const [image, setImage] = useState("");
   // const [urlImage, setUrlImage] = useState('');
   const [preview, setPreview] = useState('');
@@ -48,7 +48,7 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
       });
       setName('');
       setEmail('');
-      setRole('');
+      setRole(0);
       setImage('');
       toast.success("User has been updated successfuly..", {
         position: toast.POSITION.TOP_CENTER,
@@ -77,13 +77,13 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
 
   return (
     <section className="modalEditProduct">
-      <div className="box-container">
+      <div className="boxContainer">
         <div className="formContainer">
           <form onSubmit={handleUpdate}>
             <ToastContainer />
             <div className="col">
               <div className="inputGroup">
-                <label htmlFor="name">Product Name</label>
+                <label htmlFor="name">Full Name</label>
                 <input type="text" required name='name' onChange={(e) => setName(e.target.value)} value={name} />
               </div>
               <div className="inputGroup">
@@ -92,10 +92,13 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
               </div>
               <div className="inputGroup">
                 <label htmlFor="role">Role</label>
-                <select name="role" id="" onChange={(e) => setRole(e.target.value)}>
-                  <option value={role}>{role}</option>
-                  <option value={parseInt("2")}>User</option>
-                  <option value={parseInt("1")}>Admin</option>
+                <select name="role" id="" onChange={(e: any) => setRole(e.target.value)}>
+                  <option value={role}>{role === 1 ? 'Admin' : 'User'}</option>
+                  {role === 1 ? (
+                    <option value={parseInt("2")}>User</option>
+                  ) : (
+                    <option value={parseInt("1")}>Admin</option>
+                  )}
                 </select>
               </div>
             </div>
