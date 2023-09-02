@@ -18,18 +18,32 @@
     height: 100vh;
 
     .formContainer {
-      // background-color: white;
+      background-color: white;
       padding: 4rem;
       border-radius: 1rem;
+      max-height: 55rem;
+      overflow: auto;
+      // max-width: 40rem;
+
+      @include tablet {
+        width: 80%;
+      }
+
+      @include phone {
+        width: 90%;
+      }
 
       form {
-        display: flex;
-        // flex-direction: column;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
         // border: .1rem solid salmon;
-        width: 100%;
-        overflow: auto;
+        // width: 100%;
+        // overflow: auto;
+
+        @include phone {
+          grid-template-columns: repeat(1, 1fr);
+        }
 
         .col {
           // border: .1rem solid green;
@@ -49,7 +63,7 @@
 
             input {
               font-size: 1.4rem;
-              width: 30rem;
+              width: 100%;
               height: 4rem;
               background-color: transparent;
               border: transparent;
@@ -76,7 +90,7 @@
 
             select {
               font-size: 1.4rem;
-              width: 30rem;
+              width: 100%;
               height: 4rem;
               background-color: transparent;
               border: transparent;

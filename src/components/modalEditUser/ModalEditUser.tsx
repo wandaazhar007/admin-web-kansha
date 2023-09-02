@@ -76,11 +76,11 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
   }, [])
 
   return (
-    <section className="modalEditProduct">
+    <section className="modalEditUser">
       <div className="boxContainer">
         <div className="formContainer">
+          <ToastContainer />
           <form onSubmit={handleUpdate}>
-            <ToastContainer />
             <div className="col">
               <div className="inputGroup">
                 <label htmlFor="name">Full Name</label>
