@@ -75,8 +75,7 @@ const CategoryList: React.FC = () => {
       }
     }
     setOpenModalDelete(false);
-
-    // alert(id);
+    getCategories();
   }
 
   const handleModal = (id: string) => {
@@ -91,9 +90,8 @@ const CategoryList: React.FC = () => {
     setPropName(id);
   }
   useEffect(() => {
-    getCategories()
-    // console.log('dotenv', import.meta.env.VITE_GET_ALL_CATEGORY);
-  }, [querySearch, page, active, openModal, propId]);
+    getCategories();
+  }, [querySearch, page, active]);
 
   return (
     <>
