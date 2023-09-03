@@ -4,6 +4,8 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 // import { useNavigate } from 'react-router-dom';
 
 const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
@@ -79,6 +81,7 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
     <section className="modalEditUser">
       <div className="boxContainer">
         <div className="formContainer">
+          <div className="btnClose" onClick={closeModal}></div>
           <ToastContainer />
           <form onSubmit={handleUpdate}>
             <div className="col">

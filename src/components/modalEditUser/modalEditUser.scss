@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    // background-color: #ac4e4e;
 
     .formContainer {
       background-color: white;
@@ -23,6 +24,7 @@
       border-radius: 1rem;
       max-height: 55rem;
       overflow: auto;
+      position: relative;
       // max-width: 40rem;
 
       @include tablet {
@@ -31,6 +33,26 @@
 
       @include phone {
         width: 90%;
+      }
+
+      .btnClose {
+        &::before {
+          content: 'X';
+          width: 3rem;
+          height: 3rem;
+          background-color: #ac4e4e;
+          color: white;
+          display: flex;
+          font-weight: 700;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          border-radius: 50%;
+          position: absolute;
+          right: 1rem;
+          top: 1rem;
+          cursor: pointer;
+        }
       }
 
       form {
