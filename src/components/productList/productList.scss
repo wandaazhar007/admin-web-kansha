@@ -64,49 +64,7 @@
 }
 
 
-.pagination {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
 
-  .box-container {
-    display: flex;
-    gap: 1.5rem;
-
-    // @include tablet {
-    //   gap: 1rem;
-    // }
-
-    .link {
-      height: 3.5rem;
-      width: 3.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: .6rem;
-      border: .1rem solid $colorBackgroundDark;
-      color: $colorBackgroundDark;
-
-      // @include tablet {
-      //   height: 2.5rem;
-      //   width: 2.5rem;
-      //   font-size: 1.4rem;
-      // }
-    }
-
-    .active {
-      background-color: $colorBackgroundDark;
-      color: $colorBackgroundLight;
-    }
-
-    .disabled {
-      background-color: grey-color;
-      color: $colorBackgroundDark;
-      cursor: not-allowed;
-      opacity: .3;
-    }
-  }
-}
 
 
 @keyframes skeleton-loading {
