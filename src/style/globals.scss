@@ -69,6 +69,7 @@ a {
       border: .1rem solid $colorBackgroundDark;
       color: $colorBackgroundDark;
       text-decoration: none;
+
       // @include tablet {
       //   height: 2.5rem;
       //   width: 2.5rem;
@@ -76,9 +77,11 @@ a {
       // }
     }
 
-    .active {
+    .link.active {
       background-color: $colorBackgroundDark;
       color: $colorBackgroundLight;
+      font-weight: 700;
+      font-size: 1.6rem;
     }
 
     .disabled {
