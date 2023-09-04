@@ -4,8 +4,6 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
 // import { useNavigate } from 'react-router-dom';
 
 const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
