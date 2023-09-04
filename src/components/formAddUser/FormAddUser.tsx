@@ -64,10 +64,10 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
   }
 
   return (
-    <section className="formAddProduct">
+    <section className="formAddUser">
       <div className="formContainer">
+        <ToastContainer />
         <form onSubmit={handleSubmit}>
-          <ToastContainer />
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="name">User Name</label>

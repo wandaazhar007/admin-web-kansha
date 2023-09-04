@@ -65,4 +65,8 @@
   left: 0;
   // width: 22rem;
   transition: .5s linear;
+
+  @include phone {
+    width: 100%;
+  }
 }

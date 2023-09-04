@@ -1,0 +1,94 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+.formAddUser {
+  // border: .2rem solid salmon;
+  margin-top: 2rem;
+
+  .formContainer {
+    form {
+      // display: flex;
+      // flex-direction: column;
+      // flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      // border: .1rem solid salmon;
+      width: 100%;
+      overflow: auto;
+
+      @include phone {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .col {
+        // border: .1rem solid green;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .inputGroup {
+          display: flex;
+          flex-direction: column;
+          gap: .5rem;
+          color: $colorBackgroundDark;
+          // border: .1rem solid green;
+
+          label {
+            font-size: 1.4rem;
+          }
+
+          input {
+            font-size: 1.4rem;
+            // width: 30rem;
+            height: 4rem;
+            background-color: transparent;
+            border: transparent;
+
+            // border-top: .01rem solid grey;
+            border-bottom: .01rem solid grey;
+            padding: 1rem 0;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          textarea {
+            background-color: transparent;
+            border: transparent;
+            border-bottom: .01rem solid grey;
+            font-size: 1.4rem;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          select {
+            font-size: 1.4rem;
+            width: 30rem;
+            height: 4rem;
+            background-color: transparent;
+            border: transparent;
+            border-bottom: .01rem solid grey;
+            padding: 1rem 0;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          .btnSave {
+            padding: 1rem 2rem;
+            background-color: $colorBackgroundDark;
+            color: $colorBackgroundLight;
+            border-radius: .5rem;
+            font-size: 1.4rem;
+          }
+        }
+      }
+
+    }
+  }
+}
