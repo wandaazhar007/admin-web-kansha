@@ -7,6 +7,7 @@ export const SidebarProvider = ({ children }: any) => {
 
   const triggerSidebar = () => {
     setActive(!active);
+    // console.log('clicked')
   }
 
   const contextValue: any = {

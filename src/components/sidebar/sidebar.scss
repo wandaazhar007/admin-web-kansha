@@ -15,6 +15,7 @@
 
   .sidebar {
     background-color: $colorBackgroundDark;
+    // background-color: red;
     color: $colorBackgroundLight;
     padding: 1.5rem;
     transition: all .9s linear;
@@ -62,6 +63,6 @@
 .sidebarContainer.on {
   // position: absolute;
   left: 0;
-  width: 22rem;
+  // width: 22rem;
   transition: .5s linear;
 }
