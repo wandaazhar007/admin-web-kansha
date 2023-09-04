@@ -91,7 +91,7 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
               </div>
               <div className="inputGroup">
                 <label htmlFor="email">Email</label>
-                <input type="email" required name='slug' readOnly value={email} />
+                <input type="email" aria-readonly name='slug' readOnly value={email} />
               </div>
               <div className="inputGroup">
                 <label htmlFor="role">Role</label>
@@ -112,7 +112,9 @@ const ModalEditUser: any = ({ openModal, closeModal, propId }: any) => {
                 <label htmlFor="image">Profile Image</label>
                 <input type="file" name='image' id="image" onChange={loadImage} />
                 {preview ? (
-                  <img src={preview} width={"300px"} />
+                  <div className="imagePreview">
+                    <img src={preview} />
+                  </div>
                 ) : (
                   ""
                 )}

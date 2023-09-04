@@ -44,7 +44,7 @@
           label {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #6f6f6f;
+            color: $textGrey;
           }
 
           input {
@@ -67,16 +67,16 @@
             }
           }
 
-          textarea {
-            background-color: transparent;
-            border: transparent;
-            border-bottom: .01rem solid grey;
-            font-size: 1.4rem;
+          // textarea {
+          //   background-color: transparent;
+          //   border: transparent;
+          //   border-bottom: .01rem solid grey;
+          //   font-size: 1.4rem;
 
-            &:focus {
-              outline: none;
-            }
-          }
+          //   &:focus {
+          //     outline: none;
+          //   }
+          // }
 
           select {
             font-size: 1.4rem;
@@ -89,6 +89,25 @@
 
             &:focus {
               outline: none;
+            }
+          }
+
+          .imagePreview {
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-top: 1rem;
+            width: 25rem;
+            // height: 25rem;
+            // height: 30rem;
+            // border: .1rem solid salmon;
+            padding: 1rem;
+            background-color: #fff;
+
+            img {
+              object-fit: contain;
+              width: 25rem;
+              // height: 25rem;
+              border-radius: .7rem;
             }
           }
 

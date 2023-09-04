@@ -77,10 +77,12 @@
             display: flex;
             flex-direction: column;
             gap: .5rem;
-            color: $colorBackgroundDark;
+            color: $textGrey;
 
             label {
               font-size: 1.4rem;
+              font-weight: 700;
+              color: $textGrey;
             }
 
             input {
@@ -96,6 +98,7 @@
 
               &:focus {
                 outline: none;
+                border-bottom: .3rem solid $colorBackgroundDark;
               }
             }
 
@@ -121,6 +124,25 @@
 
               &:focus {
                 outline: none;
+              }
+            }
+
+            .imagePreview {
+              border-radius: 1rem;
+              overflow: hidden;
+              margin-top: 1rem;
+              width: 25rem;
+              // height: 25rem;
+              // height: 30rem;
+              // border: .1rem solid salmon;
+              padding: 1rem;
+              background-color: #E8E8E8;
+
+              img {
+                object-fit: contain;
+                width: 25rem;
+                // height: 25rem;
+                border-radius: .7rem;
               }
             }
 

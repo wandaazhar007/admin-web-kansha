@@ -101,7 +101,9 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
               <label htmlFor="image">Profile Picture</label>
               <input type="file" name='image' id="image" onChange={loadImage} />
               {preview ? (
-                <img src={preview} width={"300px"} />
+                <div className="imagePreview">
+                  <img src={preview} />
+                </div>
               ) : (
                 ""
               )}
