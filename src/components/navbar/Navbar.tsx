@@ -30,10 +30,10 @@ const Navbar: React.FC = () => {
     try {
       const response = await axios.get(import.meta.env.VITE_TOKEN);
       // setToken(response.data.accessToken);
-      console.log('data login', response.data)
+      // console.log('data login', response.data)
       const decoded: any = jwt_decode(response.data.accessToken);
       // console.log(response.data.accessToken)
-      console.log(decoded)
+      // console.log(decoded)
       setname(decoded.name);
       // setEmail(decoded.email);
       // setRole

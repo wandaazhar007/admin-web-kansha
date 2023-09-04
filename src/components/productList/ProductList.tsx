@@ -39,7 +39,7 @@ const ProductList: React.FC = () => {
       setPages(response.data.totalPage);
       setRows(response.data.totalRows);
       setIsLoading(false)
-      console.log(response.data.result);
+      // console.log(response.data.result);
     }, 100);
   }
 
