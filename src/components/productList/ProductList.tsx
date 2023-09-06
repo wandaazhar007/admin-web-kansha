@@ -19,10 +19,6 @@ const ProductList: React.FC = () => {
   const [rows, setRows] = useState(0);
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  // const [propId, setPropId] = useState('');
-  // const [propSlug, setPropSlug] = useState('')
-  // const [propName, setPropName] = useState('');
-  // const [propPrice, setPropPrice] = useState(0);
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [propId, setPropId] = useState('');
   const [propName, setPropName] = useState('');
@@ -31,7 +27,7 @@ const ProductList: React.FC = () => {
   const active = triggerCon.active;
 
   const getMenu = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=10`);
+    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=5`);
     // const response = await axios.get(`https://api.kanshamissouri.com/search-products?search_query=${querySearch}&page=${page}&limit=10`);
     setTimeout(() => {
       setMenus(response.data.result);
@@ -98,6 +94,9 @@ const ProductList: React.FC = () => {
   const handleResetSearch = () => {
     // getMenu();
     setQuerySearch('');
+    setPages(0);
+    setPage(0);
+    console.log(pages);
     // setOpenModalDelete(true);
   }
   useEffect(() => {
@@ -195,7 +194,7 @@ const ProductList: React.FC = () => {
               <ReactPaginate
                 previousLabel={"<"}
                 nextLabel={">"}
-                pageCount={Math.min(10, pages)}
+                pageCount={Math.min(5, pages)}
                 onPageChange={changePage}
                 containerClassName={"pagination box-container"}
                 pageLinkClassName={"link"}
