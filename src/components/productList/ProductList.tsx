@@ -59,6 +59,7 @@ const ProductList: React.FC = () => {
   };
   // type search = "string" | "number";
   const handleSearch = (e: any) => {
+    setPage(0);
     setQuerySearch(e.target.value);
     setIsLoading(true);
   }
@@ -94,7 +95,11 @@ const ProductList: React.FC = () => {
     setPropId(id);
     setPropName(id);
   }
-
+  const handleResetSearch = () => {
+    // getMenu();
+    setQuerySearch('');
+    // setOpenModalDelete(true);
+  }
   useEffect(() => {
     getMenu()
   }, [querySearch, page, active]);
@@ -106,7 +111,9 @@ const ProductList: React.FC = () => {
         <div className="overflow-x-auto">
           <div className="search">
             <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
-            {querySearch}
+            <div className="textSearch">
+              {querySearch && (<p onClick={handleResetSearch}>{querySearch}</p>)}
+            </div>
           </div>
           <table className="table">
             <thead>
