@@ -27,7 +27,7 @@ const ProductList: React.FC = () => {
   const active = triggerCon.active;
 
   const getMenu = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=5`);
+    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=10`);
     // const response = await axios.get(`https://api.kanshamissouri.com/search-products?search_query=${querySearch}&page=${page}&limit=10`);
     setTimeout(() => {
       setMenus(response.data.result);

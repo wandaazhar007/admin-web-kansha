@@ -3,6 +3,10 @@
 
 .categoryList {
   margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: .01rem solid #dadada;
+  box-shadow: $boxShadow;
 
   th {
     font-size: 1.6rem;
