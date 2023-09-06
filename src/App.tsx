@@ -12,6 +12,7 @@ import Categories from './pages/categories/Categories';
 import Users from './pages/users/Users';
 import { SidebarProvider } from './context/SidebarContext';
 import { NavbarProvider } from './context/NavbarContext';
+import Profile from './pages/profile/Profile';
 
 function App() {
   const Layout = () => {
@@ -55,6 +56,10 @@ function App() {
         {
           path: "/users",
           element: <Users />
+        },
+        {
+          path: "/profile",
+          element: <Profile />
         }
       ]
     },

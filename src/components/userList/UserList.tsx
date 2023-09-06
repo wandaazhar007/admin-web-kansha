@@ -12,7 +12,7 @@ import format from 'date-fns/format';
 import { parseISO } from 'date-fns';
 import ModalDelete from '../modalDelete/ModalDelete';
 
-const CategoryList: React.FC = () => {
+const UserList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   // const [limit, setLimit] = useState(10);
@@ -219,4 +219,4 @@ const CategoryList: React.FC = () => {
   );
 }
 
-export default CategoryList;
+export default UserList;
