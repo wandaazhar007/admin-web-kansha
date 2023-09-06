@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TriggerContext } from '../../context/TriggerContext';
+import format from 'date-fns/format';
+import { parseISO } from 'date-fns';
 import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
 import ModalDelete from '../modalDelete/ModalDelete';
 
@@ -157,7 +159,7 @@ const CategoryList: React.FC = () => {
                         </div>
                       </td>
                       <td>{category.slug}</td>
-                      <td>{category.createdAt}</td>
+                      <td>{format(parseISO(category.createdAt), 'yyyy-MM-dd')}</td>
                       <th>
                         <div className="actions">
                           <div className="detail" onClick={() => handleModal(category.id)}> <FontAwesomeIcon icon={faEdit} /></div>
