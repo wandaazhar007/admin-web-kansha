@@ -1,3 +1,68 @@
+@import '../../style/responsive.scss';
+@import '../../style/variable.scss';
+
+
 h1 {
   font-size: 2.8rem;
+}
+
+.dashboard {
+  .wrapContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @include phone {
+      grid-template-columns: repeat(1, 1fr);
+      // grid-template-rows: repeat(2, 1fr);
+    }
+
+    .boxContent {
+      // width: 10rem;
+      height: 20rem;
+      padding: 1rem;
+      border: .5rem solid #dadada;
+      border-radius: 1rem;
+      box-shadow: $boxShadow;
+    }
+
+    .boxContent.box1 {
+      // background-color: aqua;
+      // height: 40rem;
+      grid-column: span 2;
+
+
+      @include phone {
+        grid-column: span 1;
+      }
+
+    }
+
+    .boxContent.box2 {}
+
+    .boxContent.box3 {
+      grid-row: span 2;
+      height: 41rem;
+
+      @include phone {
+        grid-row: span 1;
+      }
+    }
+
+    .boxContent.box4 {}
+
+    .boxContent.box5 {}
+
+    .boxContent.box6 {}
+
+    .boxContent.box8 {}
+
+    .boxContent.box9 {
+      grid-column: span 2;
+
+      @include phone {
+        grid-column: span 1;
+      }
+    }
+  }
 }

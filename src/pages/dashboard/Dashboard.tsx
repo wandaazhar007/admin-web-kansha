@@ -67,10 +67,19 @@ const Dashboard: React.FC = () => {
   // }, []);
 
   return (
-    <>
-      <h1>Welcome Back: {name}</h1>
-
-    </>
+    <section className="dashboard">
+      <div className="wrapContainer">
+        <div className="boxContent box1"></div>
+        <div className="boxContent box2"></div>
+        <div className="boxContent box3"></div>
+        {/* <div className="boxContent box4"></div> */}
+        <div className="boxContent box5"></div>
+        <div className="boxContent box6"></div>
+        {/* <div className="boxContent box7"></div>
+        <div className="boxContent box8"></div> */}
+        <div className="boxContent box9"></div>
+      </div>
+    </section>
   );
 }
 
