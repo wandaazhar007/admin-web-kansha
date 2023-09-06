@@ -2,6 +2,8 @@
 @import '../../style/variable.scss';
 
 .productList {
+  margin-top: 2rem;
+
   th {
     font-size: 1.6rem;
     color: grey;
@@ -15,7 +17,7 @@
   .search {
     display: flex;
     justify-content: flex-end;
-    margin: 1rem 0;
+    margin: 2rem 0;
 
     input {
       background-color: transparent;

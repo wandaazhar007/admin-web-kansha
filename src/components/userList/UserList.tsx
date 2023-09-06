@@ -95,12 +95,11 @@ const CategoryList: React.FC = () => {
 
   return (
     <>
-      <section className="categoryList">
+      <section className="userList">
         <ToastContainer />
         <div className="overflow-x-auto">
           <div className="search">
             <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
-            {querySearch}
           </div>
           <table className="table">
             <thead>

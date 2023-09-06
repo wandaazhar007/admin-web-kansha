@@ -49,7 +49,7 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   }
 
   return (
-    <section className="formAddProduct">
+    <section className="formAddCategory">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <ToastContainer />
