@@ -89,6 +89,15 @@ const CategoryList: React.FC = () => {
     setPropName(id);
   }
 
+  const handleResetSearch = () => {
+    // getMenu();
+    setQuerySearch('');
+    setPages(0);
+    setPage(0);
+    console.log(pages);
+    // setOpenModalDelete(true);
+  }
+
   useEffect(() => {
     getUsers();
   }, [querySearch, page, active]);
@@ -100,6 +109,9 @@ const CategoryList: React.FC = () => {
         <div className="overflow-x-auto">
           <div className="search">
             <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
+            <div className="textSearch">
+              {querySearch && (<p onClick={handleResetSearch}>{querySearch}</p>)}
+            </div>
           </div>
           <table className="table">
             <thead>
