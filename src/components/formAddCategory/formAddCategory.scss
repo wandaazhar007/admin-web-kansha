@@ -8,24 +8,23 @@
   .formContainer {
     form {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       gap: 1rem;
-      width: 70%;
+      width: 40rem;
       overflow: auto;
       margin: 0 auto;
       background-color: #e8e8e8;
-      padding: 2rem;
+      padding: 3rem 2rem;
       border-radius: 1rem;
       box-shadow: $boxShadow;
       // border: .1rem solid salmon;
 
       @include tablet {
-        width: 100%;
+        width: 90%;
       }
 
       @include phone {
-        // width: 100%;
-        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
       }
 
       .col {

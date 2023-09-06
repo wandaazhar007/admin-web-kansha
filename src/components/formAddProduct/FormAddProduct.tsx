@@ -88,8 +88,8 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
   return (
     <section className="formAddProduct">
       <div className="formContainer">
+        <ToastContainer />
         <form onSubmit={handleSubmit}>
-          <ToastContainer />
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="name">Product Name</label>
@@ -124,7 +124,9 @@ const FormAddProduct = ({ setButtonAdd, buttonAdd }: any) => {
               <label htmlFor="image">Image Product</label>
               <input type="file" name='image' id="image" onChange={loadImage} />
               {preview ? (
-                <img src={preview} width={"300px"} />
+                <div className="imagePreview">
+                  <img src={preview} />
+                </div>
               ) : (
                 ""
               )}

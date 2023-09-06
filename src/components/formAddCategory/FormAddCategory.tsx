@@ -51,8 +51,8 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   return (
     <section className="formAddCategory">
       <div className="formContainer">
+        <ToastContainer />
         <form onSubmit={handleSubmit}>
-          <ToastContainer />
           <div className="col">
             <div className="inputGroup">
               <label htmlFor="name">Category Name</label>

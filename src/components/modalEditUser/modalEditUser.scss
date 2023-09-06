@@ -57,13 +57,11 @@
 
       form {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        // border: .1rem solid salmon;
-        // width: 100%;
-        // overflow: auto;
 
-        @include phone {
+
+        @include tablet {
           grid-template-columns: repeat(1, 1fr);
         }
 
@@ -91,8 +89,6 @@
               height: 4rem;
               background-color: transparent;
               border: transparent;
-
-              // border-top: .01rem solid grey;
               border-bottom: .01rem solid grey;
               padding: 1rem 0;
 
@@ -102,16 +98,6 @@
               }
             }
 
-            textarea {
-              background-color: transparent;
-              border: transparent;
-              border-bottom: .01rem solid grey;
-              font-size: 1.4rem;
-
-              &:focus {
-                outline: none;
-              }
-            }
 
             select {
               font-size: 1.4rem;

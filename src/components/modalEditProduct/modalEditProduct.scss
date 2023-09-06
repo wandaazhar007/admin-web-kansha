@@ -95,6 +95,7 @@
 
               &:focus {
                 outline: none;
+                border-bottom: .3rem solid $colorBackgroundDark;
               }
             }
 
@@ -109,6 +110,7 @@
 
               &:focus {
                 outline: none;
+                border-bottom: .2rem solid $colorBackgroundDark;
               }
             }
 

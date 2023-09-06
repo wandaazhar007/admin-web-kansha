@@ -62,31 +62,7 @@
 
               &:focus {
                 outline: none;
-              }
-            }
-
-            textarea {
-              background-color: transparent;
-              border: transparent;
-              border-bottom: .01rem solid grey;
-              font-size: 1.4rem;
-
-              &:focus {
-                outline: none;
-              }
-            }
-
-            select {
-              font-size: 1.4rem;
-              width: 30rem;
-              height: 4rem;
-              background-color: transparent;
-              border: transparent;
-              border-bottom: .01rem solid grey;
-              padding: 1rem 0;
-
-              &:focus {
-                outline: none;
+                border-bottom: .2rem solid $colorBackgroundDark;
               }
             }
 
