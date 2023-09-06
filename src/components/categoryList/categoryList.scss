@@ -16,8 +16,11 @@
 
   .search {
     display: flex;
-    justify-content: flex-end;
+    // justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
     margin: 2rem 0;
+    gap: 1rem;
 
     input {
       background-color: transparent;
@@ -31,6 +34,24 @@
 
       &:focus {
         outline: none;
+      }
+    }
+
+    .textSearch {
+      p {
+        cursor: pointer;
+        color: white;
+        background-color: red;
+        padding: .5rem 1rem;
+        font-size: 1.4rem;
+        border-radius: .5rem;
+
+        &::after {
+          content: 'x';
+          color: white;
+          padding-left: 1rem;
+          font-weight: 700;
+        }
       }
     }
   }

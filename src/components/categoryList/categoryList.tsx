@@ -54,6 +54,8 @@ const CategoryList: React.FC = () => {
   };
   // type search = "string" | "number";
   const handleSearch = (e: any) => {
+    setPage(0);
+    setPages(0)
     setQuerySearch(e.target.value);
     setIsLoading(true);
   }
@@ -89,6 +91,11 @@ const CategoryList: React.FC = () => {
     setPropId(id);
     setPropName(id);
   }
+
+  const handleResetSearch = () => {
+    setQuerySearch('');
+  }
+
   useEffect(() => {
     getCategories();
   }, [querySearch, page, active]);
@@ -100,7 +107,9 @@ const CategoryList: React.FC = () => {
         <div className="overflow-x-auto">
           <div className="search">
             <input type="text" placeholder='search here..' onChange={handleSearch} value={querySearch} />
-            {querySearch}
+            <div className="textSearch">
+              {querySearch && (<p onClick={handleResetSearch}>{querySearch}</p>)}
+            </div>
           </div>
           <table className="table">
             <thead>
