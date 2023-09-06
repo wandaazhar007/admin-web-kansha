@@ -105,8 +105,9 @@ const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
     <section className="modalEditProduct">
       <div className="boxContainer">
         <div className="formContainer">
+          <div className="btnClose" onClick={closeModal}></div>
+          <ToastContainer />
           <form onSubmit={handleUpdate}>
-            <ToastContainer />
             <div className="col">
               <div className="inputGroup">
                 <label htmlFor="name">Product Name</label>
@@ -140,7 +141,9 @@ const ModaleditProduct: any = ({ openModal, closeModal, propId }: any) => {
                 <label htmlFor="image">Image Product</label>
                 <input type="file" name='image' id="image" onChange={loadImage} />
                 {preview ? (
-                  <img src={preview} width={"300px"} />
+                  <div className="imagePreview">
+                    <img src={preview} />
+                  </div>
                 ) : (
                   ""
                 )}

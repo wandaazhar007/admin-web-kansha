@@ -21,15 +21,39 @@
       background-color: white;
       padding: 4rem;
       border-radius: 1rem;
+      max-height: 55rem;
+      overflow: auto;
+      position: relative;
+
+      .btnClose {
+        &::before {
+          content: 'X';
+          width: 3rem;
+          height: 3rem;
+          background-color: #ac4e4e;
+          color: white;
+          display: flex;
+          font-weight: 700;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          border-radius: 50%;
+          position: absolute;
+          right: 1rem;
+          top: 1rem;
+          cursor: pointer;
+        }
+      }
 
       form {
-        display: flex;
-        // flex-direction: column;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        // border: .1rem solid salmon;
-        width: 100%;
-        overflow: auto;
+
+
+        @include phone {
+          grid-template-columns: repeat(1, 1fr);
+        }
 
         .col {
           // border: .1rem solid green;
@@ -85,6 +109,22 @@
 
               &:focus {
                 outline: none;
+              }
+            }
+
+            .imagePreview {
+              border-radius: 1rem;
+              overflow: hidden;
+              margin-top: 1rem;
+              width: 25rem;
+              padding: 1rem;
+              background-color: #E8E8E8;
+
+              img {
+                object-fit: contain;
+                width: 25rem;
+                // height: 25rem;
+                border-radius: .7rem;
               }
             }
 
