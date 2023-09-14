@@ -5,7 +5,7 @@ import { SidebarContext } from '../../context/SidebarContext';
 import { NavbarContext } from '../../context/NavbarContext';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 const Navbar: React.FC = () => {
@@ -64,7 +64,9 @@ const Navbar: React.FC = () => {
   return (
     <section className="navbar">
       <div className="logo">
-        <img src="./logo-kansha-header.png" />
+        <Link to="/">
+          <img src="./logo-kansha-header.png" />
+        </Link>
       </div>
       <div className={`links  ${activeNavbar ? 'on' : ''}`}>
         {/* <img src="/search.svg" className="icon" /> */}

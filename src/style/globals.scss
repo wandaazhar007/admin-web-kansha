@@ -11,6 +11,11 @@ html {
   box-sizing: border-box;
 }
 
+*::selection {
+  background-color: $colorBackgroundDark;
+  color: $colorBackgroundLight;
+}
+
 a {
   text-decoration: none;
   columns: inherit;
