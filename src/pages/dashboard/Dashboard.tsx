@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   const [name, setname] = useState("");
+  const [image, setImage] = useState("");
   // const [token, setToken] = useState("");
   // const [expire, setExpire] = useState<number>(0);
   // const [users, setUsers] = useState([]);
@@ -23,6 +24,7 @@ const Dashboard: React.FC = () => {
       // console.log(response.data.accessToken)
       console.log(decoded)
       setname(decoded.name);
+      setImage(decoded.urlImage);
       // setEmail(decoded.email);
       // setRole
       // setExpire(decoded.exp);
@@ -70,9 +72,10 @@ const Dashboard: React.FC = () => {
     <section className="dashboard">
       <div className="wrapContainer">
         <div className="boxContent box1">
+          <img src={image} alt='user' />
           <h1>Welcome Back: {name}</h1>
         </div>
-        <div className="boxContent box2"></div>
+        <div className="boxContent box2">box2</div>
         <div className="boxContent box3"></div>
         {/* <div className="boxContent box4"></div> */}
         <div className="boxContent box5"></div>
