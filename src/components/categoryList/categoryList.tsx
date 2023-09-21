@@ -55,7 +55,7 @@ const CategoryList: React.FC = () => {
     }
   };
   // type search = "string" | "number";
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPage(0);
     setPages(0)
     setQuerySearch(e.target.value);

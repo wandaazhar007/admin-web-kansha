@@ -30,7 +30,7 @@ const FormAddUser = ({ setButtonAdd, buttonAdd }: any) => {
     setPreview(URL.createObjectURL(file));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(import.meta.env.VITE_GET_ALL_USER, {

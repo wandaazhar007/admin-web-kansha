@@ -5,7 +5,7 @@ import { faPlus, faClose } from "@fortawesome/free-solid-svg-icons";
 import FormAddUser from '../../components/formAddUser/FormAddUser';
 
 const Users: React.FC = () => {
-  const [buttonAdd, setButtonAdd] = useState<any>(false);
+  const [buttonAdd, setButtonAdd] = useState<boolean>(false);
 
   const handleAdd = () => {
     setButtonAdd(!buttonAdd);

@@ -27,8 +27,8 @@ const ProductList: React.FC = () => {
   const active = triggerCon.active;
 
   const getMenu = async () => {
-    // const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=10`);
-    const response = await axios.get(`https://api.kanshamissouri.com/search-products?search_query=${querySearch}&page=${page}&limit=10`);
+    const response = await axios.get(`${import.meta.env.VITE_SEARCH_PRODUCT}?search_query=${querySearch}&page=${page}&limit=10`);
+    // const response = await axios.get(`https://api.kanshamissouri.com/search-products?search_query=${querySearch}&page=${page}&limit=10`);
     setTimeout(() => {
       setMenus(response.data.result);
       setPage(response.data.page);
@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
     }
   };
   // type search = "string" | "number";
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPage(0);
     setQuerySearch(e.target.value);
     setIsLoading(true);

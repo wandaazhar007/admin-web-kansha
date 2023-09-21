@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Products: React.FC = () => {
-  const [buttonAdd, setButtonAdd] = useState<any>(false);
+  const [buttonAdd, setButtonAdd] = useState<boolean>(false);
 
   const handleAdd = () => {
     setButtonAdd(!buttonAdd);

@@ -15,7 +15,7 @@ const FormAddCategory = ({ setButtonAdd, buttonAdd }: any) => {
   // const active = triggerCon.active;
   // const navigate = useNavigate();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(import.meta.env.VITE_GET_ALL_CATEGORY, {

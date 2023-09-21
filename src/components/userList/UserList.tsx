@@ -54,7 +54,7 @@ const UserList: React.FC = () => {
     }
   };
   // type search = "string" | "number";
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuerySearch(e.target.value);
     setIsLoading(true);
   }
