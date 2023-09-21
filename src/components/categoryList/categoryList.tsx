@@ -11,7 +11,7 @@ import format from 'date-fns/format';
 import { parseISO } from 'date-fns';
 import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
 import ModalDelete from '../modalDelete/ModalDelete';
-import { SelectedType } from '../../types/types';
+import { CategoryMapType, SelectedType } from '../../types/types';
 
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -125,7 +125,7 @@ const CategoryList: React.FC = () => {
 
               {isLoading ? (
                 <>
-                  {categories.map((category: any) => (
+                  {categories.map((category: CategoryMapType) => (
                     <tr key={category.id}>
                       <td>
                         <div className="flex items-center space-x-3">
@@ -148,7 +148,7 @@ const CategoryList: React.FC = () => {
                 </>
               ) : (
                 <>
-                  {categories.map((category: any, index) => (
+                  {categories.map((category: CategoryMapType, index) => (
                     <tr key={index}>
                       <td>
                         <div className="flex items-center space-x-3">
