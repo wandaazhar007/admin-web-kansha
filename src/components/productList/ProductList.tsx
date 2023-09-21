@@ -9,6 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TriggerContext } from '../../context/TriggerContext';
 import ModaleditProduct from '../modalEditProduct/ModalEditProduct';
 import ModalDelete from '../modalDelete/ModalDelete';
+import { SelectedType } from '../../types/types';
 
 const ProductList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +41,7 @@ const ProductList: React.FC = () => {
   }
 
   // type selected = any
-  const changePage = ({ selected }: any) => {
+  const changePage = ({ selected }: SelectedType) => {
     setIsLoading(true)
     setTimeout(() => {
       setPage(selected);

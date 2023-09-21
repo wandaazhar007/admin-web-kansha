@@ -11,6 +11,7 @@ import format from 'date-fns/format';
 import { parseISO } from 'date-fns';
 import ModalEditCategory from '../modalEditCategory/ModalEditCategory';
 import ModalDelete from '../modalDelete/ModalDelete';
+import { SelectedType } from '../../types/types';
 
 const CategoryList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +42,11 @@ const CategoryList: React.FC = () => {
   }
 
   // type selected = any
-  const changePage = ({ selected }: any) => {
+  // type selectedType = {
+  //   selected: number
+  // }
+
+  const changePage = ({ selected }: SelectedType) => {
     setIsLoading(true)
     setTimeout(() => {
       setPage(selected);

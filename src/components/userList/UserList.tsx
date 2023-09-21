@@ -11,6 +11,7 @@ import ModalEditUser from '../modalEditUser/ModalEditUser';
 import format from 'date-fns/format';
 import { parseISO } from 'date-fns';
 import ModalDelete from '../modalDelete/ModalDelete';
+import { SelectedType } from '../../types/types';
 
 const UserList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +41,7 @@ const UserList: React.FC = () => {
   }
 
   // type selected = any
-  const changePage = ({ selected }: any) => {
+  const changePage = ({ selected }: SelectedType) => {
     setIsLoading(true)
     setTimeout(() => {
       setPage(selected);
