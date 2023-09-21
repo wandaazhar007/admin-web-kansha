@@ -4,9 +4,10 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TriggerContext } from '../../context/TriggerContext';
+import { ModalEditType } from '../../types/types';
 
-const ModalEditCategory: any = ({ openModal, closeModal, propId }: any) => {
-  if (!openModal) return null;
+const ModalEditCategory = ({ closeModal, propId }: ModalEditType) => {
+  // if (!openModal) return null;
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -24,7 +25,7 @@ const ModalEditCategory: any = ({ openModal, closeModal, propId }: any) => {
     }, 500);
   }
 
-  const handleUpdate = async (e: any) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.patch(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${propId}`, {
@@ -47,7 +48,7 @@ const ModalEditCategory: any = ({ openModal, closeModal, propId }: any) => {
     }
   }
 
-  const slugify = (str: any) => {
+  const slugify = (str: string) => {
     return str
       .toLowerCase()
       .trim()

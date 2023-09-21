@@ -23,8 +23,8 @@ const CategoryList: React.FC = () => {
   const [msg, setMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
-  const [propId, setPropId] = useState('');
-  const [propName, setPropName] = useState('');
+  const [propId, setPropId] = useState(0);
+  // const [propName, setPropName] = useState('');
   const [categories, setCategories] = useState([]);
   const triggerCon: any = useContext(TriggerContext);
   const active = triggerCon.active;
@@ -41,10 +41,6 @@ const CategoryList: React.FC = () => {
     }, 100);
   }
 
-  // type selected = any
-  // type selectedType = {
-  //   selected: number
-  // }
 
   const changePage = ({ selected }: SelectedType) => {
     setIsLoading(true)
@@ -59,7 +55,7 @@ const CategoryList: React.FC = () => {
       setMsg("");
     }
   };
-  // type search = "string" | "number";
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPage(0);
     setPages(0)
@@ -69,7 +65,7 @@ const CategoryList: React.FC = () => {
 
   // const urlApi : any = import.meta.env.REACT_APP_GET_ALL_CATEGORY;
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     try {
       axios.delete(`${import.meta.env.VITE_GET_ALL_CATEGORY}/${id}`);
       toast.success("Category has been deleted successfuly..", {
@@ -87,16 +83,14 @@ const CategoryList: React.FC = () => {
     getCategories();
   }
 
-  const handleModal = (id: string) => {
+  const handleModal = (id: number) => {
     setOpenModal(true);
     setPropId(id);
-    setPropName(id);
   }
 
-  const handleModalDelete = (id: string) => {
+  const handleModalDelete = (id: number) => {
     setOpenModalDelete(true);
     setPropId(id);
-    setPropName(id);
   }
 
   const handleResetSearch = () => {
@@ -202,9 +196,9 @@ const CategoryList: React.FC = () => {
         </div>
 
       </section>
-
-      <ModalEditCategory openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} />
-      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} propName={propName} handleDelete={() => handleDelete(propId)} />
+      {openModal && <ModalEditCategory closeModal={() => setOpenModal(false)} propId={propId} />}
+      {/* <ModalEditCategory openModal={openModal} closeModal={() => setOpenModal(false)} propId={propId} /> */}
+      <ModalDelete openModalDelete={openModalDelete} closeModalDelete={() => setOpenModalDelete(false)} handleDelete={() => handleDelete(propId)} />
     </>
   );
 }
