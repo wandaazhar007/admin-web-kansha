@@ -1,15 +1,16 @@
 import { createContext, useState } from "react";
+import { TriggerContextType } from "../types/types";
 
-export const TriggerContext = createContext<string>('');
+export const TriggerContext: any = createContext('');
 
 export const TriggerProvider = ({ children }: any) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
 
   const trigger = () => {
     setActive(!active);
   }
 
-  const contextValue: any = {
+  const contextValue: TriggerContextType = {
     active,
     setActive,
     trigger

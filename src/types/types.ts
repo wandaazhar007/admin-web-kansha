@@ -13,3 +13,15 @@ export type CategoryMapType = {
   slug: string,
   createdAt: string
 }
+
+export type TriggerContextType = {
+  active: boolean,
+  setActive: React.Dispatch<React.SetStateAction<boolean>>,
+  trigger: () => void;
+}
+
+export type SidebarContextType = {
+  active: boolean,
+  setActive: React.Dispatch<React.SetStateAction<boolean>>,
+  triggerSidebar: () => void;
+}

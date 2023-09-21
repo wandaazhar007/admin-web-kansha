@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
+import { SidebarContextType } from "../types/types";
 
-export const SidebarContext = createContext<string>('');
+export const SidebarContext: any = createContext('');
 
 export const SidebarProvider = ({ children }: any) => {
   const [active, setActive] = useState(false);
@@ -10,7 +11,7 @@ export const SidebarProvider = ({ children }: any) => {
     // console.log('clicked')
   }
 
-  const contextValue: any = {
+  const contextValue: SidebarContextType = {
     active,
     setActive,
     triggerSidebar
