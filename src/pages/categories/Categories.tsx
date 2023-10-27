@@ -4,6 +4,7 @@ import FormAddCategory from "../../components/formAddCategory/FormAddCategory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import CategoryList from '../../components/categoryList/CategoryList';
+
 const Categories = () => {
 
   const [buttonAdd, setButtonAdd] = useState<any>(false);
