@@ -1,5 +1,5 @@
 import './dashboard.scss';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
@@ -7,8 +7,8 @@ import Dashboard1 from '../../components/dashboard1/Dashboard1';
 // import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
-  const [name, setname] = useState("");
-  const [image, setImage] = useState("");
+  // const [name, setname] = useState("");
+  // const [image, setImage] = useState("");
   // const [token, setToken] = useState("");
   // const [expire, setExpire] = useState<number>(0);
   // const [users, setUsers] = useState([]);
@@ -24,8 +24,8 @@ const Dashboard: React.FC = () => {
       const decoded: any = jwt_decode(response.data.accessToken);
       // console.log(response.data.accessToken)
       console.log(decoded)
-      setname(decoded.name);
-      setImage(decoded.urlImage);
+      // setname(decoded.name);
+      // setImage(decoded.urlImage);
       // setEmail(decoded.email);
       // setRole
       // setExpire(decoded.exp);
