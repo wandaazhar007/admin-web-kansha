@@ -3,8 +3,11 @@ import { menu } from "../../data";
 import './sidebar.scss';
 import { SidebarContext } from "../../context/SidebarContext";
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
+  const currentPath = useLocation();
+  console.log(currentPath.pathname);
 
   const sidebarToggle: any = useContext(SidebarContext);
   const handleSidebar = () => {
@@ -19,7 +22,7 @@ const Sidebar: React.FC = () => {
           <div className="item" key={item.id}>
             <div className="title">{item.title}</div>
             {item.listItems.map((listItem) => (
-              <Link to={listItem.url} className="listItem " key={listItem.id}>
+              <Link to={listItem.url} className={`listItem ${currentPath.pathname === listItem.url ? 'active' : ''}`} key={listItem.id}>
                 <img src={listItem.icon} />
                 <span className="listItemTitle" onClick={() => handleSidebar()}>{listItem.title}</span>
               </Link>

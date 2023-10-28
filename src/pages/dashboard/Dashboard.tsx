@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import Dashboard1 from '../../components/dashboard1/Dashboard1';
 // import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
@@ -72,10 +73,9 @@ const Dashboard: React.FC = () => {
     <section className="dashboard">
       <div className="wrapContainer">
         <div className="boxContent box1">
-          <img src={image} alt='user' />
-          <h1>Welcome Back: {name}</h1>
+          <Dashboard1 />
         </div>
-        <div className="boxContent box2">box2</div>
+        <div className="boxContent box2"></div>
         <div className="boxContent box3"></div>
         {/* <div className="boxContent box4"></div> */}
         <div className="boxContent box5"></div>
