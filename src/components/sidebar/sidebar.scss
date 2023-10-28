@@ -52,11 +52,16 @@
         }
       }
 
-      .active {
-        background-color: $colorTeal;
+      .listItem.active {
+        background-color: #01527d;
+        // color: $colorBackgroundDark;
       }
 
+
+
     }
+
+
   }
 }
 
